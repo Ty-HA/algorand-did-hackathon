@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'verification_screen.dart';
 import 'credentials_screen.dart';
 import 'profile_screen.dart';
-import '../widgets/wallet_widget.dart';
+// import '../widgets/wallet_widget.dart';
 import 'package:provider/provider.dart';
 import '../services/wallet_service.dart';
 
@@ -124,7 +124,7 @@ AppBar _buildAppBar() {
         children: [
           _buildIdentityCard(),
           const SizedBox(height: 20),
-          const WalletWidget(), // Ajouté ici
+          // const WalletWidget(), // Ajouté ici
           const SizedBox(height: 20),
           _buildActionButtons(),
           const SizedBox(height: 20),
