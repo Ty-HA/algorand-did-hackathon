@@ -136,7 +136,8 @@ AppBar _buildAppBar() {
 }
 
   Widget _buildIdentityCard() {
-    return Card(
+  return Center(
+    child: Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Padding(
@@ -174,8 +175,9 @@ AppBar _buildAppBar() {
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   Widget _buildIdentityScore() {
     return Column(
