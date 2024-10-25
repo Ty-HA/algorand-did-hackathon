@@ -1,0 +1,12 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#312E1E",
+        "titleBar.activeBackground": "#44412A",
+        "titleBar.activeForeground": "#FAFAF7"
+    },
+    "editor.tokenColorCustomizations": {
+        "comments": "#2e613f",
+        "textMateRules": []
+    },
+    "dart.flutterSdkPath": "D:\\dev_environment\\flutter"
+}
