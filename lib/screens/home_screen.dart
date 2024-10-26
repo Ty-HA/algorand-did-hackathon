@@ -1,12 +1,9 @@
-// lib/screens/home_screen.dart
-
 import 'package:flutter/material.dart';
 import 'verification_screen.dart';
 import 'credentials_screen.dart';
 import 'profile_screen.dart';
-// import '../widgets/wallet_widget.dart';
-import 'package:provider/provider.dart';
-import '../services/wallet_service.dart';
+import 'wallet_screen.dart';
+import 'ttp_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // Variables pour simuler les données
+  int _selectedIndex = 0;
   final String _didAddress = 'did:algo:0x1234...5678';
   final double _identityScore = 75.0;
   final List<Map<String, dynamic>> _credentials = [
@@ -34,125 +31,58 @@ class _HomeScreenState extends State<HomeScreen> {
     },
   ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: _buildAppBar(),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton.extended(
-  onPressed: _addNewCredential,
-  label: const Text('Add Credential'),
-  icon: const Icon(Icons.add),
-),
+  Widget _getScreen() {
+    switch (_selectedIndex) {
+      case 0:
+        return _buildMainContent();
+      case 1:
+        return const CredentialsScreen();
+      case 2:
+        return const TTPScreen();
+      case 3:
+        return const WalletScreen();
+      default:
+        return _buildMainContent();
+    }
+  }
+
+  Widget _buildMainContent() {
+    return RefreshIndicator(
+      onRefresh: () async {
+        await Future.delayed(const Duration(seconds: 1));
+      },
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildIdentityCard(),
+            const SizedBox(height: 20),
+            _buildActionButtons(),
+            const SizedBox(height: 20),
+            _buildCredentialsList(),
+          ],
+        ),
+      ),
     );
   }
 
-AppBar _buildAppBar() {
-  return AppBar(
-    title: const Text(
-      'NexusID',
-      style: TextStyle(fontWeight: FontWeight.bold),
-    ),
-    actions: [
-      Consumer<WalletService>(
-  builder: (context, wallet, _) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: wallet.connected
-        ? Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(Icons.check_circle, color: Colors.green, size: 16),
-                const SizedBox(width: 4),
-                Text(
-                  '${wallet.account?.substring(0, 4)}...${wallet.account?.substring(wallet.account!.length - 4)}',
-                  style: const TextStyle(fontSize: 12),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.logout, size: 16),
-                  onPressed: () => wallet.disconnect(),
-                ),
-              ],
-            ),
-          )
-        : ElevatedButton.icon(
-  onPressed: () async {
-    try {
-      await wallet.connect(context); // Passage du context ici
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
-      );
-    }
-  },
-  icon: const Icon(Icons.account_balance_wallet, size: 16),
-  label: const Text('Connect'),
-),
-    );
-  },
-),
-      IconButton(
-        icon: const Icon(Icons.qr_code),
-        onPressed: () => _showQRCode(),
-      ),
-      IconButton(
-        icon: const Icon(Icons.person),
-        onPressed: () => _navigateToProfile(),
-      ),
-    ],
-  );
-}
-
-  Widget _buildBody() {
-  return RefreshIndicator(
-    onRefresh: () async {
-      // Simuler un rafraîchissement des données
-      await Future.delayed(const Duration(seconds: 1));
-    },
-    child: SingleChildScrollView(
-      physics: const AlwaysScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildIdentityCard(),
-          const SizedBox(height: 20),
-          // const WalletWidget(), // Ajouté ici
-          const SizedBox(height: 20),
-          _buildActionButtons(),
-          const SizedBox(height: 20),
-          _buildCredentialsList(),
-        ],
-      ),
-    ),
-  );
-}
-
   Widget _buildIdentityCard() {
-  return Center(
-    child: Card(
+    return Center(
+      child: Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Photo de profil
             const CircleAvatar(
               radius: 40,
               backgroundColor: Colors.blue,
               child: Icon(Icons.person, size: 40, color: Colors.white),
             ),
             const SizedBox(height: 16),
-            
-            // DID Address
             Text(
               'DID Address',
               style: TextStyle(
@@ -169,15 +99,12 @@ AppBar _buildAppBar() {
               ),
             ),
             const SizedBox(height: 16),
-            
-            // Score d'identité
             _buildIdentityScore(),
           ],
         ),
       ),
-    ),
-  );
-}
+    ));
+  }
 
   Widget _buildIdentityScore() {
     return Column(
@@ -287,8 +214,6 @@ AppBar _buildAppBar() {
     );
   }
 
-
-  // Méthodes de navigation et d'action
   void _showQRCode() {
     showDialog(
       context: context,
@@ -312,88 +237,78 @@ AppBar _buildAppBar() {
     );
   }
 
-void _navigateToProfile() {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const ProfileScreen()),
-  );
-}
+  void _navigateToProfile() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ProfileScreen()),
+    );
+  }
 
-void _startVerification() {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const VerificationScreen()),
-  );
-}
+  void _startVerification() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const VerificationScreen()),
+    );
+  }
 
-void _viewAllCredentials() {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const CredentialsScreen()),
-  );
-}
+  void _viewAllCredentials() {
+    setState(() => _selectedIndex = 1); // Switch to Credentials tab
+  }
 
   void _viewCredentialDetails(Map<String, dynamic> credential) {
-    // Voir les détails d'un credential
     debugPrint('Viewing credential details: ${credential['title']}');
   }
 
-  void _addNewCredential() {
-  showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    builder: (BuildContext context) {
-      return Container(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-          top: 20,
-          left: 20,
-          right: 20,
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        title: const Text(
+          'SerendID',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'Add New Credential',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 20),
-            // Options pour ajouter des credentials
-            ListTile(
-              leading: const Icon(Icons.school),
-              title: const Text('Education Credential'),
-              onTap: () {
-                Navigator.pop(context);
-                // Naviguer vers l'écran d'ajout de credential éducatif
-                debugPrint('Adding education credential...');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.badge),
-              title: const Text('Identity Verification'),
-              onTap: () {
-                Navigator.pop(context);
-                // Naviguer vers l'écran de vérification d'identité
-                debugPrint('Starting identity verification...');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.business),
-              title: const Text('Professional Credential'),
-              onTap: () {
-                Navigator.pop(context);
-                // Naviguer vers l'écran d'ajout de credential professionnel
-                debugPrint('Adding professional credential...');
-              },
-            ),
-            const SizedBox(height: 20),
-          ],
-        ),
-      );
-    },
-  );
-}
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.qr_code),
+            onPressed: () => _showQRCode(),
+          ),
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () => _navigateToProfile(),
+          ),
+        ],
+        elevation: 2,
+      ),
+      body: _getScreen(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: (index) => setState(() => _selectedIndex = index),
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.badge),
+            label: 'Credentials',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.verified_user),
+            label: 'TTPs',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet),
+            label: 'Wallet',
+          ),
+        ],
+      ),
+      
+    );
+  }
 }

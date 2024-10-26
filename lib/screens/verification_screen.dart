@@ -31,7 +31,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 children: [
                   _buildStepCircle(1, true, "Face"),
                   _buildStepLine(_faceVerified),
-                  _buildStepCircle(2, _faceVerified, "Documents"),
+                  _buildStepCircle(2, _faceVerified, "Document"),
                   _buildStepLine(_documentsVerified),
                   _buildStepCircle(3, _documentsVerified, "Complete"),
                 ],
