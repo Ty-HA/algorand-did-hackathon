@@ -248,5 +248,7 @@ Always wrap your API calls in try-catch blocks to handle potential exceptions.
 
 ### Next Steps
 
+- create APP
+- Deploy contract
 
 
