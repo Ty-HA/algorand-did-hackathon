@@ -45,28 +45,33 @@ class _CredentialsScreenState extends State<CredentialsScreen> {
   String _selectedFilter = 'All';
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Credentials'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: _showFilterOptions,
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          _buildStatsCard(),
-          const SizedBox(height: 16),
-          Expanded(
-            child: _buildCredentialsList(),
-          ),
-        ],
-      ),
-    );
-  }
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: const Text('My Credentials'),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.filter_list),
+          onPressed: _showFilterOptions,
+        ),
+      ],
+    ),
+    body: Column(
+      children: [
+        _buildStatsCard(),
+        const SizedBox(height: 16),
+        Expanded(
+          child: _buildCredentialsList(),
+        ),
+      ],
+    ),
+    floatingActionButton: FloatingActionButton.extended(
+      onPressed: _addNewCredential,
+      label: const Text('Add Credential'),
+      icon: const Icon(Icons.add),
+    ),
+  );
+}
 
   Widget _buildStatsCard() {
     int totalCredentials = _credentials.length;
@@ -285,4 +290,62 @@ class _CredentialsScreenState extends State<CredentialsScreen> {
       ),
     );
   }
+
+  void _addNewCredential() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            top: 20,
+            left: 20,
+            right: 20,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Add New Credential',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              ListTile(
+                leading: const Icon(Icons.school),
+                title: const Text('Education Credential'),
+                onTap: () {
+                  Navigator.pop(context);
+                  debugPrint('Adding education credential...');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.badge),
+                title: const Text('Identity Verification'),
+                onTap: () {
+                  Navigator.pop(context);
+                  debugPrint('Starting identity verification...');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.business),
+                title: const Text('Professional Credential'),
+                onTap: () {
+                  Navigator.pop(context);
+                  debugPrint('Adding professional credential...');
+                },
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+   
 }
+

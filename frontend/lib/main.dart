@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'services/wallet_service.dart';
 import 'screens/home_screen.dart';
+import 'screens/main_screen.dart';
 
 void main() {
   runApp(
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const HomeScreen(), // Définit HomeScreen comme écran principal
+      // home: const MainScreen(), 
     );
   }
 }
