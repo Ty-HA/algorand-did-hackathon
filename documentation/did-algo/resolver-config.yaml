@@ -1,0 +1,12 @@
+network:
+  profiles:
+    - name: mainnet
+      node: https://mainnet-api.algonode.cloud
+      node_token: ""
+    - name: testnet
+      node: https://testnet-api.algonode.cloud
+      node_token: ""
+      profiles:
+    - name: betanet
+      node: https://betanet-api.algonode.cloud
+      node_token: ""

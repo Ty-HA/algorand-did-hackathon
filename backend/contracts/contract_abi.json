@@ -1,0 +1,20 @@
+{
+  "name": "AlgoDID",
+  "methods": [
+    {
+      "name": "register",
+      "args": [
+        {"type": "address", "name": "sender"}
+      ],
+      "returns": {"type": "void"}
+    },
+    {
+      "name": "update",
+      "args": [
+        {"type": "address", "name": "sender"},
+        {"type": "bytes", "name": "data"}
+      ],
+      "returns": {"type": "void"}
+    }
+  ]
+}
