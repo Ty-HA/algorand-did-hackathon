@@ -4,11 +4,7 @@ import '../services/api_service.dart';
 class VerificationScreen extends StatefulWidget {
   final ApiService apiService;
 
-  const VerificationScreen({
-    super.key, 
-    required this.apiService
-  });
-  
+  const VerificationScreen({super.key, required this.apiService});
 
   @override
   State<VerificationScreen> createState() => _VerificationScreenState();
@@ -18,8 +14,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
   bool _faceVerified = false;
   bool _documentsVerified = false;
 
-    String? _didAddress;
+  String? _didAddress;
   String? _didPassphrase;
+  String? _did;
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +29,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-  padding: const EdgeInsets.only(bottom: 16),
-  child: ElevatedButton.icon(
-    onPressed: _testRegistration,
-    icon: const Icon(Icons.bug_report),
-    label: const Text('Test Register API'),
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.orange,
-    ),
-  ),
-),
+            /* Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: ElevatedButton.icon(
+                onPressed: _testRegistration,
+                icon: const Icon(Icons.bug_report),
+                label: const Text('Test Register API'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                ),
+              ),
+            ), */
             // Progress Stepper
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -81,7 +78,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     ElevatedButton.icon(
                       onPressed: _faceVerified ? null : _startFaceVerification,
                       icon: const Icon(Icons.camera_alt),
-                      label: Text(_faceVerified ? 'Verified' : 'Start Face Scan'),
+                      label:
+                          Text(_faceVerified ? 'Verified' : 'Start Face Scan'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: _faceVerified ? Colors.green : null,
                       ),
@@ -99,7 +97,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
-                    const Icon(Icons.document_scanner, size: 60, color: Colors.blue),
+                    const Icon(Icons.document_scanner,
+                        size: 60, color: Colors.blue),
                     const SizedBox(height: 16),
                     const Text(
                       'Document Verification',
@@ -115,11 +114,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
-                      onPressed: !_faceVerified ? null : (_documentsVerified ? null : _startDocumentScan),
+                      onPressed: !_faceVerified
+                          ? null
+                          : (_documentsVerified ? null : _startDocumentScan),
                       icon: const Icon(Icons.upload_file),
-                      label: Text(_documentsVerified ? 'Verified' : 'Scan Document'),
+                      label: Text(
+                          _documentsVerified ? 'Verified' : 'Scan Document'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: _documentsVerified ? Colors.green : null,
+                        backgroundColor:
+                            _documentsVerified ? Colors.green : null,
                       ),
                     ),
                   ],
@@ -131,7 +134,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
             // Complete Button
             ElevatedButton(
-              onPressed: (_faceVerified && _documentsVerified) ? _completeVerification : null,
+              onPressed: (_faceVerified && _documentsVerified)
+                  ? _completeVerification
+                  : null,
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 backgroundColor: Colors.green,
@@ -202,7 +207,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
     // Simuler un délai
     await Future.delayed(const Duration(seconds: 2));
-    
+
     // Fermer le dialogue de chargement
     if (mounted) Navigator.of(context).pop();
 
@@ -233,7 +238,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
     // Simuler un délai
     await Future.delayed(const Duration(seconds: 2));
-    
+
     // Fermer le dialogue de chargement
     if (mounted) Navigator.of(context).pop();
 
@@ -248,26 +253,49 @@ class _VerificationScreenState extends State<VerificationScreen> {
       // Afficher un dialogue de chargement
       showDialog(
         context: context,
-        barrierDismissible: false,
         builder: (BuildContext context) {
-          return const AlertDialog(
+          return AlertDialog(
+            title: const Text('Verification Complete'),
             content: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircularProgressIndicator(),
-                SizedBox(height: 16),
-                Text('Registering your identity...'),
+                const Text('Your identity has been successfully verified!'),
+                const SizedBox(height: 16),
+                const Text('Your DID:',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                SelectableText(_did ?? 'Error retrieving DID'),
+                const SizedBox(height: 8),
+                const Text('Algorand Address:',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                SelectableText(_didAddress ?? 'Error retrieving address'),
+                const SizedBox(height: 8),
+                const Text('Important: Please save your passphrase securely',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.red)),
+                SelectableText(_didPassphrase ?? 'Error retrieving passphrase',
+                    style: TextStyle(fontSize: 12)),
               ],
             ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Fermer le dialogue
+                  Navigator.of(context).pop(); // Retourner à l'écran précédent
+                },
+                child: const Text('OK'),
+              ),
+            ],
           );
         },
       );
 
       // Appeler l'API pour enregistrer l'utilisateur
       final result = await widget.apiService.registerUser();
-      
+
       // Stocker les informations DID
       setState(() {
+        _did = result['did'];
         _didAddress = result['address'];
         _didPassphrase = result['passphrase'];
       });
@@ -288,20 +316,23 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 children: [
                   const Text('Your identity has been successfully verified!'),
                   const SizedBox(height: 16),
-                  const Text('Your DID Address:', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(_didAddress ?? 'Error retrieving address'),
+                  const Text('Your DID Address:',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(_did ?? 'Error retrieving address'),
                   const SizedBox(height: 8),
-                  const Text('Important: Please save your passphrase securely', 
-                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
-                  Text(_didPassphrase ?? 'Error retrieving passphrase', 
-                    style: const TextStyle(fontSize: 12)),
+                  const Text('Important: Please save your passphrase securely',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red)),
+                  Text(_didPassphrase ?? 'Error retrieving passphrase',
+                      style: const TextStyle(fontSize: 12)),
                 ],
               ),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // Fermer le dialogue
-                    Navigator.of(context).pop(); // Retourner à l'écran précédent
+                    Navigator.of(context)
+                        .pop(); // Retourner à l'écran précédent
                   },
                   child: const Text('OK'),
                 ),
@@ -334,94 +365,95 @@ class _VerificationScreenState extends State<VerificationScreen> {
       }
     }
   }
-  void _testRegistration() async {
-  try {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const AlertDialog(
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CircularProgressIndicator(),
-            SizedBox(height: 16),
-            Text('Testing registration...'),
-          ],
-        ),
-      ),
-    );
 
-    final success = await widget.apiService.testRegistration();
-    
-    if (mounted) Navigator.pop(context); // Ferme le dialogue de chargement
-    
-    if (mounted) {
+  void _testRegistration() async {
+    try {
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: Text(
-            success ? 'Test Successful' : 'Test Failed',
-            style: TextStyle(
-              color: success ? Colors.green : Colors.red,
-            ),
-          ),
+        barrierDismissible: false,
+        builder: (context) => const AlertDialog(
           content: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(success 
-                ? 'The registration API is working correctly!'
-                : 'The registration API test failed.'
+              CircularProgressIndicator(),
+              SizedBox(height: 16),
+              Text('Testing registration...'),
+            ],
+          ),
+        ),
+      );
+
+      final success = await widget.apiService.testRegistration();
+
+      if (mounted) Navigator.pop(context); // Ferme le dialogue de chargement
+
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(
+              success ? 'Test Successful' : 'Test Failed',
+              style: TextStyle(
+                color: success ? Colors.green : Colors.red,
               ),
-              const SizedBox(height: 16),
-              const Text('Technical Details:'),
-              Text('Endpoint: ${widget.apiService.baseUrl}/register'),
-              const Text('Method: POST'),
-              const Text('Headers:'),
-              const Text('  Content-Type: application/json'),
-              const Text('  Accept: */*'),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(success
+                    ? 'The registration API is working correctly!'
+                    : 'The registration API test failed.'),
+                const SizedBox(height: 16),
+                const Text('Technical Details:'),
+                Text('Endpoint: ${widget.apiService.baseUrl}/register'),
+                const Text('Method: POST'),
+                const Text('Headers:'),
+                const Text('  Content-Type: application/json'),
+                const Text('  Accept: */*'),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK'),
+              ),
             ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
+        );
+      }
+    } catch (e) {
+      if (mounted) Navigator.pop(context); // Ferme le dialogue de chargement
+
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title:
+                const Text('Test Error', style: TextStyle(color: Colors.red)),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Error: $e'),
+                const SizedBox(height: 16),
+                const Text('Technical Details:'),
+                Text('Endpoint: ${widget.apiService.baseUrl}/register'),
+                const Text('Method: POST'),
+                const Text('Headers:'),
+                const Text('  Content-Type: application/json'),
+                const Text('  Accept: */*'),
+              ],
             ),
-          ],
-        ),
-      );
-    }
-  } catch (e) {
-    if (mounted) Navigator.pop(context); // Ferme le dialogue de chargement
-    
-    if (mounted) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Test Error', style: TextStyle(color: Colors.red)),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Error: $e'),
-              const SizedBox(height: 16),
-              const Text('Technical Details:'),
-              Text('Endpoint: ${widget.apiService.baseUrl}/register'),
-              const Text('Method: POST'),
-              const Text('Headers:'),
-              const Text('  Content-Type: application/json'),
-              const Text('  Accept: */*'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK'),
+              ),
             ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
+        );
+      }
     }
   }
-}
 }
