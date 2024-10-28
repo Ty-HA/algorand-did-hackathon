@@ -1,212 +1,166 @@
-# DID API with Algorand On-chain Management
+# Algorand DID Backend
 
-## 1. Backend Architecture
+A decentralized identity (DID) management system built on Algorand TestNet.
 
-The backend is built using FastAPI and integrates directly with Algorand TestNet for DID management. 
-Main components:
+## Setup
 
-1. `main.py`: API endpoints and routing logic
-2. `registration.py`: User registration and DID creation
-3. `did_management.py`: DID Document management and on-chain verification
-4. `authentication.py`: User authentication
-5. `data_display.py`: Data retrieval and formatting
-6. `did_update.py`: DID document updates
-
-## 2. Backend Setup
-
-### 2.1 Environment Setup
-
-1. Python 3.7+ installation required
-2. Clone and setup:
-   ```bash
-   cd my-app/backend
-   python -m venv venv
-   
-   # Windows
-   venv\Scripts\activate
-   # Linux/Mac
-   source venv/bin/activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### 2.2 Dependencies
-Create a `requirements.txt` with:
-```
-fastapi>=0.68.0
-uvicorn>=0.15.0
-py-algorand-sdk>=2.5.0
-python-multipart>=0.0.5
-pytest>=6.2.5
-pytest-asyncio>=0.16.0
-base58>=2.1.1
-typing-extensions>=4.0.0
-```
-
-### 2.3 Run the Server
+1. Install dependencies:
 ```bash
-uvicorn main:app --reload
+pip install -r requirements.txt
 ```
 
-## 3. DID Management Features
-
-### 3.1 On-chain DID Registration
-
-#### Register new DID
-```python
-POST /register-did
-{
-    "address": "algorand_address",
-    "mnemonic": "25_word_mnemonic"  # Optional
-}
-```
-Response:
-```json
-{
-    "did": "did:algo:abc123...",
-    "address": "algorand_address",
-    "transaction_id": "TX_ID",
-    "explorer_links": {
-        "transaction": "https://testnet.explorer.perawallet.app/tx/TX_ID",
-        "address": "https://testnet.explorer.perawallet.app/address/ADDRESS"
-    }
-}
-```
-
-#### Verify DID on-chain
-```python
-GET /verify-did/{did}
-```
-Response:
-```json
-{
-    "status": "confirmed",
-    "did": "did:algo:abc123...",
-    "timestamp": 1635444444,
-    "block": 12345678
-}
-```
-
-### 3.2 DID Document Management
-
-#### Create DID Document
-```python
-POST /create-did-document
-{
-    "did": "did:algo:abc123...",
-    "controller": "optional_controller_did"
-}
-```
-Response:
-```json
-{
-    "@context": ["https://www.w3.org/ns/did/v1"],
-    "id": "did:algo:abc123...",
-    "controller": "did:algo:abc123...",
-    "verificationMethod": [{
-        "id": "did:algo:abc123...#key-1",
-        "type": "Ed25519VerificationKey2018",
-        "controller": "did:algo:abc123...",
-        "publicKeyBase58": "algorand_address"
-    }],
-    "authentication": ["did:algo:abc123...#key-1"]
-}
-```
-
-#### Update DID Document
-```python
-PUT /update-did-document
-{
-    "did": "did:algo:abc123...",
-    "document": {
-        // Updated DID Document fields
-    }
-}
-```
-
-### 3.3 DID Resolution
-```python
-GET /resolve-did/{did}
-```
-Response:
-```json
-{
-    "did": "did:algo:abc123...",
-    "didDocument": {
-        // Full DID Document
-    },
-    "metadata": {
-        "recovered": true,
-        "network": "testnet"
-    }
-}
-```
-
-## 4. Testing
-
-### 4.1 Unit Tests
+2. Create necessary directories:
 ```bash
-pytest test_main.py
+mkdir -p logs/accounts
+mkdir -p logs/deployments
 ```
 
-### 4.2 Test DID Registration
+## 1. Deploy Contract
+
+The deployment process involves:
+1. Creating a deployer account
+2. Funding it from TestNet faucet
+3. Deploying the DID management contract
+
 ```bash
-python test_registration.py
+# Deploy the contract
+python scripts/deploy_contract.py
 ```
 
-### 4.3 Test On-chain Verification
+This will:
+- Create a new Algorand account
+- Show you the address to fund
+- Wait for you to fund it at https://bank.testnet.algorand.network/
+- Deploy the contract
+- Save deployment info to logs/deployments/deployment_info.json
+- Show you the APP_ID to update in config.py
+
+After deployment:
+1. Copy the APP_ID from the output
+2. Update config.py with your APP_ID:
 ```python
-python test_did_verification.py
+# config.py
+APP_ID = YOUR_APP_ID  # Replace with the deployed app ID
 ```
 
-## 5. Pera Explorer Integration
+## 2. Create Algorand Account
 
-All transactions can be verified on Pera Explorer:
-- Transactions: `https://testnet.explorer.perawallet.app/tx/{tx_id}`
-- Addresses: `https://testnet.explorer.perawallet.app/address/{address}`
+You can create new accounts using the account generator:
 
-## 6. Security Considerations
+```bash
+python scripts/generate_account.py
+```
 
-1. Never share or commit mnemonics
-2. Store DIDs securely
-3. Verify transactions before confirmation
-4. Implement rate limiting
-5. Add error handling for failed transactions
+This interactive script allows you to:
+1. Create new accounts
+2. List existing accounts
+3. Get account details
+4. Save account info to logs/accounts/accounts_record.json
 
-## 7. Integration Examples
+The generated accounts can be used for DID registration.
 
-### 7.1 Python Example
+## 3. Register DID
+
+Once you have an account, you can register a DID. The registration fees are paid by the deployer account.
+
+Using curl:
+```bash
+curl -X POST http://localhost:8000/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "address": "YOUR_ACCOUNT_ADDRESS"
+  }'
+```
+
+Using Python:
 ```python
-from did_management import register_did_for_account
+import requests
 
-result = register_did_for_account(
-    address="YOUR_ADDRESS",
-    m_phrase="YOUR_MNEMONIC"
+response = requests.post(
+    "http://localhost:8000/register",
+    json={
+        "address": "YOUR_ACCOUNT_ADDRESS"
+    }
 )
-print(f"DID Created: {result['did']}")
-print(f"Verify at: {result['explorer_links']['transaction']}")
+print(response.json())
 ```
 
-### 7.2 Flutter Integration
-```dart
-// Add your Flutter integration code here...
+## Directory Structure
+
+```
+backend/
+├── logs/
+│   ├── accounts/
+│   │   └── accounts_record.json
+│   └── deployments/
+│       └── deployment_info.json
+├── contracts/
+│   ├── approval.teal
+│   └── clear.teal
+├── scripts/
+│   ├── deploy_contract.py
+│   └── generate_account.py
+└── config.py
 ```
 
-## 8. Next Steps
+## Security Notes
 
-1. Implement DID Resolution caching
-2. Add support for multiple verification methods
-3. Implement DID service endpoints
-4. Add revocation support
-5. Create monitoring dashboard
-6. Deploy smart contracts for advanced features
+Sensitive files are stored in the logs directory and are not committed to git:
+- deployment_info.json: Contains deployer account credentials
+- accounts_record.json: Contains generated account information
 
-## 9. Resources
+Never share or commit:
+- Private keys
+- Mnemonics
+- Account credentials
+- deployment_info.json
+- accounts_record.json
 
-- [Algorand Documentation](https://developer.algorand.org/)
-- [W3C DID Specification](https://www.w3.org/TR/did-core/)
-- [Pera Explorer](https://explorer.perawallet.app/)
-- [Project Repository](https://github.com/yourusername/project)
+## API Endpoints
+
+- POST /register - Register a new DID
+- GET /resolve/{did} - Resolve a DID
+- PUT /update - Update a DID
+- GET /health - Health check
+
+## Development
+
+Start the server:
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Run tests:
+```bash
+pytest -v
+```
+
+## Example Flow
+
+1. Deploy contract:
+```bash
+python scripts/deploy_contract.py
+# Fund the displayed address at https://bank.testnet.algorand.network/
+# Note the APP_ID and update config.py
+```
+
+2. Create an account:
+```bash
+python scripts/generate_account.py
+# Choose option 1 to create new account
+# Note the generated address
+```
+
+3. Register DID:
+```bash
+curl -X POST http://localhost:8000/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "address": "YOUR_GENERATED_ADDRESS"
+  }'
+```
+
+4. Verify DID:
+```bash
+curl http://localhost:8000/resolve/did:algo:YOUR_GENERATED_ADDRESS
+```

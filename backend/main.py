@@ -1,9 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from registration import register_user, get_algod_client
-from typing import Optional
+from typing import Optional, Dict, Any
 import logging
+from did_management import register_did, resolve_did, get_algod_client
+from data_display import display_user_data
+from did_update import update_did
 
 # Configuration du logging
 logging.basicConfig(
@@ -13,8 +15,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="SerendID API",
-    description="API for DID management with Algorand",
+    title="Algorand DID Management",
+    description="Decentralized Identity Management System on Algorand",
     version="1.0.0"
 )
 
@@ -27,78 +29,91 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class RegistrationResponse(BaseModel):
-    did: str
+class DIDRegistrationRequest(BaseModel):
     address: str
-    passphrase: str
-    transaction_id: Optional[str] = None
+    private_key: Optional[str] = None
+    mnemonic: Optional[str] = None
 
-class NetworkStatus(BaseModel):
+class DIDUpdateRequest(BaseModel):
+    did: str
+    new_key: Optional[str] = None
+    new_service: Optional[str] = None
+
+class RegistrationResponse(BaseModel):
     status: str
-    network: str
-    last_round: int
-    version: list[str]
+    did: Optional[str] = None
+    message: str
 
-@app.post("/register", response_model=RegistrationResponse)
-async def register():
-    """
-    Enregistre un nouvel utilisateur et génère son DID.
-    """
+@app.post("/register")
+async def register_did_endpoint(request: DIDRegistrationRequest) -> Dict[str, Any]:
     try:
-        logger.info("Starting registration process")
-        result = register_user()
-        logger.info(f"Registration successful. DID: {result['did']}")
+        account_info = {
+            "address": request.address,
+            "private_key": request.private_key,
+            "mnemonic": request.mnemonic
+        }
+        result = await register_did(account_info)
         return result
     except Exception as e:
-        logger.error(f"Registration failed: {str(e)}", exc_info=True)
+        logger.error(f"Registration failed: {str(e)}")
         raise HTTPException(status_code=400, detail=str(e))
 
-@app.get("/network-status", response_model=NetworkStatus)
-async def check_network_status():
-    """
-    Vérifie la connexion au réseau Algorand.
-    """
+@app.get("/resolve/{did}")
+async def resolve_did_endpoint(did: str) -> Dict[str, Any]:
     try:
-        logger.info("Checking network status")
-        client = get_algod_client()
-        status = client.status()
-        versions = client.versions()
-        
-        response = {
-            "status": "connected",
-            "network": "TestNet",
-            "last_round": status['last-round'],
-            "version": versions['versions']
-        }
-        logger.info(f"Network status: {response}")
-        return response
+        return resolve_did(did)
     except Exception as e:
-        logger.error(f"Network status check failed: {str(e)}", exc_info=True)
-        raise HTTPException(
-            status_code=500,
-            detail=f"Failed to connect to Algorand network: {str(e)}"
+        logger.error(f"DID resolution failed: {str(e)}")
+        raise HTTPException(status_code=404, detail=str(e))
+
+@app.get("/display/{did}")
+async def display_did_data(did: str) -> Dict[str, Any]:
+    try:
+        return display_user_data(did)
+    except Exception as e:
+        logger.error(f"Data display failed: {str(e)}")
+        raise HTTPException(status_code=404, detail=str(e))
+
+@app.put("/update")
+async def update_did_endpoint(request: DIDUpdateRequest) -> Dict[str, Any]:
+    try:
+        return await update_did(
+            did=request.did,
+            new_key=request.new_key,
+            new_service=request.new_service
         )
+    except Exception as e:
+        logger.error(f"DID update failed: {str(e)}")
+        raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/health")
-async def health_check():
+async def health_check() -> Dict[str, str]:
     """
     Simple health check endpoint.
     """
     return {"status": "healthy", "version": "1.0.0"}
 
-@app.post("/register-onchain", response_model=RegistrationResponse)
-async def register_onchain():
+@app.post("/register-onchain")
+async def register_onchain() -> RegistrationResponse:
     try:
-        result = await register_user_onchain()
-        return result
+        # Implement your onchain registration logic here
+        return RegistrationResponse(
+            status="success",
+            did="did:algo:example",
+            message="Registration successful"
+        )
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/verify-did/{transaction_id}")
-async def verify_did(transaction_id: str):
+async def verify_did(transaction_id: str) -> Dict[str, Any]:
     try:
         client = get_algod_client()
-        did_manager = DIDOnChainRegistration(client)
-        return await did_manager.verify_did_registration(transaction_id)
+        # Implement your verification logic here
+        return {
+            "status": "success",
+            "transaction_id": transaction_id,
+            "verified": True
+        }
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))

@@ -8,8 +8,17 @@ import time
 import json
 from datetime import datetime
 import os
-from typing import List, Dict, Optional, Union
+from typing import List, Dict, Optional, Union, Any
 from base58 import b58encode, b58decode
+from config import (
+    ALGOD_ADDRESS, 
+    ALGOD_TOKEN, 
+    INDEXER_ADDRESS, 
+    INDEXER_TOKEN,
+    APP_ID,
+    DID_PREFIX
+)
+import asyncio
 
 # Configuration du logging
 logging.basicConfig(
@@ -17,18 +26,6 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
-
-# Configuration Algorand TestNet
-ALGOD_ADDRESS = "https://testnet-api.algonode.cloud"
-ALGOD_TOKEN = ""
-INDEXER_ADDRESS = "https://testnet-idx.algonode.cloud"
-INDEXER_TOKEN = ""
-PERA_EXPLORER_TESTNET = "https://testnet.explorer.perawallet.app"
-
-# Configuration des types de transactions
-TX_TYPE_DID_REGISTRATION = "DID_REGISTRATION"
-TX_TYPE_DID_UPDATE = "DID_UPDATE"
-TX_TYPE_DID_DEACTIVATE = "DID_DEACTIVATE"
 
 def get_algod_client() -> algod.AlgodClient:
     """Retourne un client Algorand pour le TestNet."""
@@ -38,193 +35,174 @@ def get_indexer_client() -> indexer.IndexerClient:
     """Retourne un client Indexer pour le TestNet."""
     return indexer.IndexerClient(INDEXER_TOKEN, INDEXER_ADDRESS)
 
-def verify_existing_did(client, address: str) -> dict:
-    """
-    Vérifie si une adresse a déjà un DID enregistré.
-    """
+async def create_testnet_account() -> Dict[str, str]:
+    """Create a new Algorand account on TestNet"""
+    private_key, address = account.generate_account()
+    passphrase = mnemonic.from_private_key(private_key)
+    
+    return {
+        "address": address,
+        "private_key": private_key,
+        "passphrase": passphrase
+    }
+
+def get_deployer_account() -> Dict[str, str]:
+    """Get the deployer account info from deployment_info.json"""
     try:
-        # Récupérer les transactions de l'adresse
-        transactions = client.search_transactions(
-            address=address,
-            txn_type="pay",
-            note_prefix=json.dumps({"type": "DID_REGISTRATION"}).encode()[:10]
-        )
-
-        dids_found = []
-        for tx in transactions:
-            if "note" in tx:
-                note_bytes = base64.b64decode(tx["note"])
-                note_json = json.loads(note_bytes.decode())
-                if note_json["type"] == "DID_REGISTRATION":
-                    dids_found.append({
-                        "did": note_json["did"],
-                        "timestamp": note_json["timestamp"],
-                        "tx_id": tx["id"]
-                    })
-
-        return {
-            "address": address,
-            "has_did": len(dids_found) > 0,
-            "did_count": len(dids_found),
-            "dids": dids_found
-        }
+        with open("deployment_info.json", "r") as f:
+            deployment_info = json.load(f)
+            return {
+                "address": deployment_info["address"],
+                "private_key": deployment_info["private_key"]
+            }
     except Exception as e:
-        logger.error(f"Error verifying existing DID: {e}")
+        logger.error(f"Failed to load deployer account: {e}")
         raise
 
-def create_did_document(did: str, address: str, controller: str = None) -> dict:
-    """
-    Crée un DID Document conforme aux standards W3C.
-    """
-    timestamp = int(time.time())
-    
-    did_document = {
-        "@context": [
-            "https://www.w3.org/ns/did/v1",
-            "https://w3id.org/security/suites/ed25519-2018/v1"
-        ],
-        "id": did,
-        "controller": controller or did,
-        "verificationMethod": [{
-            "id": f"{did}#key-1",
-            "type": "Ed25519VerificationKey2018",
-            "controller": did,
-            "publicKeyBase58": address
-        }],
-        "authentication": [
-            f"{did}#key-1"
-        ],
-        "assertionMethod": [
-            f"{did}#key-1"
-        ],
-        "created": timestamp,
-        "updated": timestamp,
-        "alsoKnownAs": [
-            f"algorand:{address}"
-        ]
-    }
-    
-    return did_document
-
-def create_did_from_address(address: str) -> str:
-    """
-    Crée un DID à partir d'une adresse Algorand.
-    Format: did:algo:base58(sha256(address)[:16])
-    """
-    try:
-        address_bytes = address.encode('utf-8')
-        address_hash = hashlib.sha256(address_bytes).digest()
-        truncated_hash = address_hash[:16]
-        
-        # Encoder en base58 (importé en haut du fichier)
-        did_suffix = b58encode(truncated_hash).decode('utf-8')
-        did = f"did:algo:{did_suffix}"
-        
-        logger.debug(f"Created DID {did} for address {address}")
-        return did
-    except Exception as e:
-        logger.error(f"Error creating DID: {e}")
-        raise Exception(f"Failed to create DID: {str(e)}")
-
-def register_did_with_document(address: str, private_key: str = None, m_phrase: str = None):
-    """
-    Enregistre un DID avec son DID Document sur la blockchain.
-    """
+async def register_did(account_info: Dict[str, str]) -> Dict[str, Any]:
+    """Register a DID for an account on TestNet, with fees paid by deployer"""
     try:
         client = get_algod_client()
+        params = client.suggested_params()
         
-        # Vérifier si l'adresse a déjà un DID
-        existing = verify_existing_did(client, address)
-        if existing["has_did"]:
-            raise Exception(f"Address already has {existing['did_count']} DID(s) registered")
+        # Adjust the validity window
+        params.first = params.first
+        params.last = params.first + 4
         
-        # Créer le DID
-        did = create_did_from_address(address)
+        # Get deployer account to pay for transaction
+        deployer = get_deployer_account()
         
-        # Créer le DID Document
-        did_document = create_did_document(did, address)
+        # Create DID identifier from user's address
+        did = f"{DID_PREFIX}{account_info['address']}"
         
-        # Créer la note pour la transaction
+        # Create DID Document
+        did_document = {
+            "@context": ["https://www.w3.org/ns/did/v1"],
+            "id": did,
+            "verificationMethod": [{
+                "id": f"{did}#key-1",
+                "type": "Ed25519VerificationKey2018",
+                "controller": did,
+                "publicKeyBase58": account_info["address"]
+            }],
+            "authentication": [f"{did}#key-1"]
+        }
+        
+        # Create note for transaction
         note = json.dumps({
             "type": "DID_REGISTRATION",
             "did": did,
-            "timestamp": int(time.time()),
             "didDocument": did_document
         }).encode()
-        
-        # Obtenir la clé privée
-        if private_key is None and m_phrase is not None:
-            private_key = mnemonic.to_private_key(m_phrase)
-            
-        # Créer et envoyer la transaction
-        params = client.suggested_params()
-        unsigned_txn = transaction.PaymentTxn(
-            sender=address,
+
+        # Create transaction - using deployer as sender
+        txn = transaction.ApplicationCallTxn(
+            sender=deployer["address"],  # Deployer pays for transaction
             sp=params,
-            receiver=address,
-            amt=0,
+            index=APP_ID,
+            on_complete=transaction.OnComplete.NoOpOC,
+            app_args=[b"register"],
+            accounts=[account_info["address"]],  # Include user's address as an account
             note=note
         )
-        
-        signed_txn = unsigned_txn.sign(private_key)
+
+        # Sign with deployer's private key
+        signed_txn = txn.sign(deployer["private_key"])
         tx_id = client.send_transaction(signed_txn)
         
-        # Attendre la confirmation
-        confirmed_txn = transaction.wait_for_confirmation(client, tx_id, 4)
+        logger.info(f"Transaction {tx_id} sent to network")
+        
+        # Wait for confirmation
+        confirmed_txn = await wait_for_confirmation(client, tx_id, timeout=15)
         
         return {
+            "status": "success",
             "did": did,
             "didDocument": did_document,
             "transaction_id": tx_id,
-            "confirmation_round": confirmed_txn['confirmed-round'],
-            "explorer_link": f"{PERA_EXPLORER_TESTNET}/tx/{tx_id}"
+            "confirmed_round": confirmed_txn["confirmed-round"],
+            "paid_by": deployer["address"]
         }
         
     except Exception as e:
-        logger.error(f"Failed to register DID with document: {e}")
-        raise
+        logger.error(f"Failed to register DID: {str(e)}")
+        raise Exception(f"Failed to register DID: {str(e)}")
 
-def resolve_did(did: str) -> dict:
-    """
-    Résout un DID pour obtenir son DID Document.
-    """
+async def resolve_did(did: str) -> Dict[str, Any]:
+    """Resolve a DID to get its DID Document from TestNet"""
     try:
-        client = get_algod_client()
+        indexer = get_indexer_client()
         
-        # Extraire l'adresse du DID
-        did_suffix = did.split(':')[-1]
-        # Ici vous devrez implémenter la logique inverse de create_did_from_address
+        # Extract address from DID
+        address = did.replace(DID_PREFIX, "")
         
-        # Rechercher la dernière transaction DID_REGISTRATION
-        transactions = client.search_transactions(
-            note_prefix=json.dumps({"type": "DID_REGISTRATION", "did": did}).encode()[:20]
+        # Search for DID registration transaction
+        response = indexer.search_transactions(
+            address=address,
+            note_prefix=b"DID_REGISTRATION",
+            application_id=APP_ID
         )
         
-        latest_doc = None
-        latest_timestamp = 0
-        
-        for tx in transactions:
-            if "note" in tx:
-                note_bytes = base64.b64decode(tx["note"])
-                note_json = json.loads(note_bytes.decode())
-                if note_json["type"] == "DID_REGISTRATION" and note_json["did"] == did:
-                    if note_json["timestamp"] > latest_timestamp:
-                        latest_timestamp = note_json["timestamp"]
-                        latest_doc = note_json.get("didDocument")
-        
-        if not latest_doc:
-            raise Exception(f"No DID Document found for {did}")
+        if not response.get("transactions"):
+            raise Exception("DID not found")
             
+        # Get the latest transaction
+        latest_tx = sorted(
+            response["transactions"],
+            key=lambda x: x["confirmed-round"],
+            reverse=True
+        )[0]
+        
+        # Decode the note to get DID Document
+        note = base64.b64decode(latest_tx["note"]).decode()
+        did_data = json.loads(note)
+        
         return {
             "did": did,
-            "didDocument": latest_doc,
-            "timestamp": latest_timestamp,
+            "didDocument": did_data["didDocument"],
             "metadata": {
-                "recovered": True,
-                "network": "testnet"
+                "chain": "algorand-testnet",
+                "recovered": True
             }
         }
         
     except Exception as e:
-        logger.error(f"Failed to resolve DID: {e}")
+        raise Exception(f"Failed to resolve DID: {str(e)}")
+
+async def wait_for_confirmation(client: algod.AlgodClient, txid: str, timeout: int = 10) -> Dict[str, Any]:
+    """Wait until the transaction is confirmed or rejected, or until timeout."""
+    try:
+        start_round = client.status()["last-round"] + 1
+        current_round = start_round
+
+        while current_round < start_round + timeout:
+            try:
+                pending_txn = client.pending_transaction_info(txid)
+                
+                # Check if transaction was confirmed
+                if pending_txn.get("confirmed-round", 0) > 0:
+                    logger.info(f"Transaction {txid} confirmed in round {pending_txn['confirmed-round']}")
+                    return pending_txn
+                
+                # Check for transaction errors
+                elif pending_txn.get("pool-error"):
+                    raise Exception(f"Transaction pool error: {pending_txn['pool-error']}")
+                
+                # Transaction still pending, wait and check next round
+                logger.debug(f"Waiting for confirmation... (Round {current_round})")
+                await asyncio.sleep(2)  # Increased wait time between checks
+                current_round += 1
+                
+            except Exception as e:
+                logger.error(f"Error checking transaction status: {str(e)}")
+                raise
+
+        # If we get here, we've timed out
+        raise Exception(f'Transaction {txid} not confirmed after {timeout} rounds')
+        
+    except Exception as e:
+        logger.error(f"Error in wait_for_confirmation: {str(e)}")
         raise
+
+# Add this at the end of the file
+register_did_with_document = register_did  # Alias for compatibility

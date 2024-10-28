@@ -1,10 +1,13 @@
-requests
-httpx
-py-algorand-sdk>=2.3.0
-base58>=2.1.1
-fastapi>=0.68.0
-uvicorn>=0.15.0
-python-multipart>=0.0.5
-pytest>=6.2.5
-pytest-asyncio>=0.16.0
-aiohttp>=3.8.1
+fastapi>=0.100.0,<1.0.0
+uvicorn>=0.23.0,<1.0.0
+py-algorand-sdk>=2.0.0,<3.0.0
+pydantic>=2.0.0,<3.0.0
+python-multipart>=0.0.6,<1.0.0
+requests>=2.31.0,<3.0.0
+python-jose>=3.3.0,<4.0.0
+base58>=2.1.0,<3.0.0
+python-dotenv>=1.0.0,<2.0.0
+typing-extensions>=4.7.1,<5.0.0
+pytest>=7.4.0,<8.0.0
+httpx>=0.24.0,<1.0.0  # For async HTTP testing
+pytest-asyncio>=0.21.0,<1.0.0  # For testing async functions

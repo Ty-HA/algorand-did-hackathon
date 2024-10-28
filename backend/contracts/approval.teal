@@ -1,212 +1,62 @@
-#pragma version 9
+#pragma version 6
 
-// Handle the main program flow based on ApplicationID and OnCompletion values.
-txn ApplicationID
-int 0
->
-int 6
-*
-txn OnCompletion
-+
-switch create_NoOp NOT_IMPLEMENTED NOT_IMPLEMENTED NOT_IMPLEMENTED NOT_IMPLEMENTED NOT_IMPLEMENTED call_NoOp NOT_IMPLEMENTED NOT_IMPLEMENTED NOT_IMPLEMENTED call_UpdateApplication
+// Check transaction type
+txn TypeEnum
+int appl
+==
+bnz handle_application
 
-NOT_IMPLEMENTED:
-	err
+// Handle other transaction types
+err
 
-// --- DID Registration ---
+handle_application:
+    // Check if this is a creation transaction
+    txn ApplicationID
+    int 0
+    ==
+    bnz handle_create
 
-// Register a new DID with an Algorand address
-abi_route_registerDID:
-	byte 0x // Fill stack frame with empty bytes for local variables
+    // Handle other application calls
+    txn OnCompletion
+    int NoOp
+    ==
+    bnz handle_noop
 
-	// DID Owner
-	txna ApplicationArgs 1
-	len
-	int 32
-	==
-	assert
+    // Reject all other calls
+    err
 
-	// Perform registration
-	callsub registerDID
-	int 1
-	return
+handle_create:
+    // Allow anyone to create the application
+    int 1
+    return
 
-registerDID:
-	proto 2 0
+handle_noop:
+    // Get first application argument
+    txn NumAppArgs
+    int 0
+    >
+    bz reject  // If no arguments, reject
 
-	// Verify that the sender is the creator or authorized party
-	txn Sender
-	global CreatorAddress
-	==
-	assert
+    txn ApplicationArgs 0
+    byte "register"
+    ==
+    bnz handle_register
 
-	// Store metadata for the DID
-	byte "DID_metadata"
-	app_global_get
-	itob
-	frame_bury -1 // store metadata locally
+    // Default: reject if no matching operation
+    b reject
 
-	// Update metadata and increase counter
-	byte "DID_metadata"
-	int 1
-	+
-	app_global_put
-	retsub
+handle_register:
+    // Check if sender is the deployer
+    byte "deployer"
+    app_global_get
+    txn Sender
+    ==
+    bz reject  // If not deployer, reject
 
-// --- Data Upload ---
+    // Allow registration
+    int 1
+    return
 
-// Upload data for a DID in segments
-abi_route_uploadData:
-	byte 0x // Fill stack frame with empty bytes
-
-	// Offset for data segment
-	txna ApplicationArgs 2
-	btoi
-
-	// Data payload
-	txna ApplicationArgs 3
-	extract 2 0
-
-	// Execute upload
-	callsub uploadData
-	int 1
-	return
-
-uploadData:
-	proto 3 0
-
-	// Check sender authorization
-	txn Sender
-	global CreatorAddress
-	==
-	assert
-
-	// Upload data in segments to the box
-	byte "DID_data"
-	frame_dig -3
-	int 0
-	frame_dig -2
-	box_replace
-	retsub
-
-// --- Finalize Data Upload ---
-
-abi_route_finalizeUpload:
-	txna ApplicationArgs 1
-	len
-	int 32
-	==
-	assert
-
-	// Complete upload process
-	callsub finalizeUpload
-	int 1
-	return
-
-finalizeUpload:
-	proto 1 0
-
-	// Mark DID status as ready
-	byte "DID_status"
-	int 1
-	app_global_put
-	retsub
-
-// --- DID Update ---
-
-// Allow creator to update the DID (add new keys/services)
-abi_route_updateDID:
-	byte 0x // Fill stack frame with empty bytes
-
-	// New key/service
-	txna ApplicationArgs 1
-	dup
-	len
-	int 32
-	==
-	assert
-
-	// Execute update
-	callsub updateDID
-	int 1
-	return
-
-updateDID:
-	proto 1 0
-
-	// Verify that only the creator can update
-	txn Sender
-	global CreatorAddress
-	==
-	assert
-
-	// Update the DID with the new key or service
-	byte "DID_metadata"
-	frame_dig -1
-	box_put
-	retsub
-
-// --- DID Deletion ---
-
-// Initiate deletion process for the DID data
-abi_route_deleteDID:
-	byte 0x // Fill stack frame with empty bytes
-
-	// Delete based on authorized sender and DID address
-	callsub deleteDID
-	int 1
-	return
-
-deleteDID:
-	proto 1 0
-
-	// Verify only creator or authorized admin can delete
-	txn Sender
-	global CreatorAddress
-	==
-	assert
-
-	// Delete DID and clear data
-	byte "DID_data"
-	box_del
-	retsub
-
-// --- Update Contract ---
-
-// Allow the creator to update the contract code
-abi_route_updateApplication:
-	callsub updateApplication
-	int 1
-	return
-
-updateApplication:
-	proto 0 0
-
-	// Check that only the creator can perform this action
-	txn Sender
-	global CreatorAddress
-	==
-	assert
-	retsub
-
-// Routing for various functions based on ApplicationArgs
-create_NoOp:
-	method "registerDID(address)void"
-	txna ApplicationArgs 0
-	match abi_route_registerDID
-	err
-
-call_NoOp:
-	method "uploadData(address,uint64,bytes)void"
-	method "finalizeUpload(address)void"
-	method "updateDID(address,bytes)void"
-	method "deleteDID(address)void"
-	txna ApplicationArgs 0
-	match abi_route_uploadData abi_route_finalizeUpload abi_route_updateDID abi_route_deleteDID
-	err
-
-call_UpdateApplication:
-	method "updateApplication()void"
-	txna ApplicationArgs 0
-	match abi_route_updateApplication
-	err
+reject:
+    int 0
+    return
