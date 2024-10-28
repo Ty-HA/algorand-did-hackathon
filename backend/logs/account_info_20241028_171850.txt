@@ -1,0 +1,6 @@
+=== ACCOUNT INFORMATION ===
+Address: S75EYJ6LZUGZWCNVEA4UARBEDTS4D2KQHPFJINLOIHDSALWANUVEK5JB7U
+Mnemonic: believe bronze involve lottery scrub assault share symptom reduce penalty melt maze weird profit fun crisp speed husband crush update business empty public ability vault
+DID: did:algo:3wN3JayAnQuVxzL2MRpdrG
+Transaction ID: FAILED_TX_Uzc1RVlKNkxaVUda
+=========================

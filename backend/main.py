@@ -85,3 +85,20 @@ async def health_check():
     Simple health check endpoint.
     """
     return {"status": "healthy", "version": "1.0.0"}
+
+@app.post("/register-onchain", response_model=RegistrationResponse)
+async def register_onchain():
+    try:
+        result = await register_user_onchain()
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/verify-did/{transaction_id}")
+async def verify_did(transaction_id: str):
+    try:
+        client = get_algod_client()
+        did_manager = DIDOnChainRegistration(client)
+        return await did_manager.verify_did_registration(transaction_id)
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=str(e))
