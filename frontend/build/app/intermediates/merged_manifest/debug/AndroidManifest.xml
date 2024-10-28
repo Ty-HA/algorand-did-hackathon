@@ -56,7 +56,7 @@
         android:debuggable="true"
         android:extractNativeLibs="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="algorand_hackathon"
+        android:label="SerendID"
         android:usesCleartextTraffic="true" >
         <activity
             android:name="com.example.algorand_hackathon.MainActivity"
