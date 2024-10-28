@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VerificationScreen extends StatefulWidget {
   final ApiService apiService;
@@ -17,6 +18,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   String? _didAddress;
   String? _didPassphrase;
   String? _did;
+  String? _transactionId;
 
   @override
   Widget build(BuildContext context) {
@@ -186,6 +188,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
     );
   }
 
+    void _launch(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      // Handle the case where the URL cannot be launched
+      print('Cannot launch URL: $url');
+    }
+  }
+
   void _startFaceVerification() async {
     // Simuler un processus de vérification
     showDialog(
@@ -253,39 +264,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
       // Afficher un dialogue de chargement
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Verification Complete'),
+          return const AlertDialog(
             content: Column(
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Your identity has been successfully verified!'),
-                const SizedBox(height: 16),
-                const Text('Your DID:',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                SelectableText(_did ?? 'Error retrieving DID'),
-                const SizedBox(height: 8),
-                const Text('Algorand Address:',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                SelectableText(_didAddress ?? 'Error retrieving address'),
-                const SizedBox(height: 8),
-                const Text('Important: Please save your passphrase securely',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.red)),
-                SelectableText(_didPassphrase ?? 'Error retrieving passphrase',
-                    style: TextStyle(fontSize: 12)),
+                CircularProgressIndicator(),
+                SizedBox(height: 16),
+                Text('Registering your identity...'),
               ],
             ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(); // Fermer le dialogue
-                  Navigator.of(context).pop(); // Retourner à l'écran précédent
-                },
-                child: const Text('OK'),
-              ),
-            ],
           );
         },
       );
@@ -298,43 +287,85 @@ class _VerificationScreenState extends State<VerificationScreen> {
         _did = result['did'];
         _didAddress = result['address'];
         _didPassphrase = result['passphrase'];
+        _transactionId = result['transaction_id'];
       });
 
       // Fermer le dialogue de chargement
       if (mounted) Navigator.of(context).pop();
 
-      // Afficher le dialogue de succès avec les informations DID
+      // Afficher le dialogue de succès
       if (mounted) {
-        showDialog(
+        await showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('Verification Complete'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Your identity has been successfully verified!'),
-                  const SizedBox(height: 16),
-                  const Text('Your DID Address:',
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Your identity has been successfully verified and registered on Algorand!',
+                      style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 16),
+                    
+                    const Text('Your DID:', 
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(_did ?? 'Error retrieving address'),
-                  const SizedBox(height: 8),
-                  const Text('Important: Please save your passphrase securely',
+                    SelectableText(_did ?? 'Error retrieving DID'),
+                    const SizedBox(height: 8),
+                    
+                    const Text('Algorand Address:', 
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                    SelectableText(_didAddress ?? 'Error retrieving address'),
+                    const SizedBox(height: 8),
+                    
+                    if (_transactionId != null) ...[
+                      const Text('Transaction ID:', 
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                      SelectableText(_transactionId!),
+                      TextButton.icon(
+                        onPressed: () => _openAlgoExplorer(_transactionId!),
+                        icon: const Icon(Icons.open_in_new),
+                        label: const Text('View on AlgoExplorer'),
+                      ),
+                      const SizedBox(height: 8),
+                    ],
+                    
+                    const Divider(),
+                    
+                    const Text('Important: Save your passphrase securely', 
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.red)),
-                  Text(_didPassphrase ?? 'Error retrieving passphrase',
-                      style: const TextStyle(fontSize: 12)),
-                ],
+                        fontWeight: FontWeight.bold, 
+                        color: Colors.red,
+                        fontSize: 16,
+                      )),
+                    const SizedBox(height: 8),
+                    SelectableText(
+                      _didPassphrase ?? 'Error retrieving passphrase', 
+                      style: const TextStyle(
+                        fontSize: 14,
+                        height: 1.5,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Warning: Never share your passphrase with anyone!',
+                      style: TextStyle(color: Colors.red, fontSize: 12),
+                    ),
+                  ],
+                ),
               ),
               actions: [
-                TextButton(
+                TextButton.icon(
                   onPressed: () {
                     Navigator.of(context).pop(); // Fermer le dialogue
-                    Navigator.of(context)
-                        .pop(); // Retourner à l'écran précédent
+                    Navigator.of(context).pop(); // Retourner à l'écran précédent
                   },
-                  child: const Text('OK'),
+                  icon: const Icon(Icons.check_circle),
+                  label: const Text('Done'),
                 ),
               ],
             );
@@ -351,11 +382,19 @@ class _VerificationScreenState extends State<VerificationScreen> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Error'),
-              content: Text(e.toString()),
+              title: const Text('Error', style: TextStyle(color: Colors.red)),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Registration failed: ${e.toString()}'),
+                  const SizedBox(height: 16),
+                  const Text('Please try again or contact support if the problem persists.'),
+                ],
+              ),
               actions: [
                 TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => Navigator.pop(context),
                   child: const Text('OK'),
                 ),
               ],
@@ -365,6 +404,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
       }
     }
   }
+
+
+
+  void _openAlgoExplorer(String txId) async {
+  final uri = Uri.parse('https://testnet.algoexplorer.io/tx/$txId');
+  _launch(uri.toString());
+
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
+  }
+}
 
   void _testRegistration() async {
     try {
