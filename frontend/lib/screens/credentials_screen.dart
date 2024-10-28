@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:algorand_hackathon/services/api_service.dart'; 
 
 class CredentialsScreen extends StatefulWidget {
-  const CredentialsScreen({super.key});
+  final ApiService apiService;
+
+  const CredentialsScreen({Key? key, required this.apiService}) : super(key: key);
 
   @override
   State<CredentialsScreen> createState() => _CredentialsScreenState();

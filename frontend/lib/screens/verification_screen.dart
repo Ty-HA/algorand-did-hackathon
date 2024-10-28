@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import '../services/api_service.dart';
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({super.key});
+  final ApiService apiService;
 
+  const VerificationScreen({
+    super.key, 
+    required this.apiService
+  });
   
 
   @override
@@ -12,6 +17,9 @@ class VerificationScreen extends StatefulWidget {
 class _VerificationScreenState extends State<VerificationScreen> {
   bool _faceVerified = false;
   bool _documentsVerified = false;
+
+    String? _didAddress;
+  String? _didPassphrase;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +32,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Padding(
+  padding: const EdgeInsets.only(bottom: 16),
+  child: ElevatedButton.icon(
+    onPressed: _testRegistration,
+    icon: const Icon(Icons.bug_report),
+    label: const Text('Test Register API'),
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.orange,
+    ),
+  ),
+),
             // Progress Stepper
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -224,25 +243,185 @@ class _VerificationScreenState extends State<VerificationScreen> {
     });
   }
 
-  void _completeVerification() {
-    // Afficher un message de succès
+  void _completeVerification() async {
+    try {
+      // Afficher un dialogue de chargement
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return const AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(height: 16),
+                Text('Registering your identity...'),
+              ],
+            ),
+          );
+        },
+      );
+
+      // Appeler l'API pour enregistrer l'utilisateur
+      final result = await widget.apiService.registerUser();
+      
+      // Stocker les informations DID
+      setState(() {
+        _didAddress = result['address'];
+        _didPassphrase = result['passphrase'];
+      });
+
+      // Fermer le dialogue de chargement
+      if (mounted) Navigator.of(context).pop();
+
+      // Afficher le dialogue de succès avec les informations DID
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Verification Complete'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Your identity has been successfully verified!'),
+                  const SizedBox(height: 16),
+                  const Text('Your DID Address:', style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(_didAddress ?? 'Error retrieving address'),
+                  const SizedBox(height: 8),
+                  const Text('Important: Please save your passphrase securely', 
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+                  Text(_didPassphrase ?? 'Error retrieving passphrase', 
+                    style: const TextStyle(fontSize: 12)),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Fermer le dialogue
+                    Navigator.of(context).pop(); // Retourner à l'écran précédent
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (e) {
+      // Fermer le dialogue de chargement
+      if (mounted) Navigator.of(context).pop();
+
+      // Afficher un dialogue d'erreur
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Error'),
+              content: Text(e.toString()),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+  }
+  void _testRegistration() async {
+  try {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Verification Complete'),
-          content: const Text('Your identity has been successfully verified!'),
+      barrierDismissible: false,
+      builder: (context) => const AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(height: 16),
+            Text('Testing registration...'),
+          ],
+        ),
+      ),
+    );
+
+    final success = await widget.apiService.testRegistration();
+    
+    if (mounted) Navigator.pop(context); // Ferme le dialogue de chargement
+    
+    if (mounted) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            success ? 'Test Successful' : 'Test Failed',
+            style: TextStyle(
+              color: success ? Colors.green : Colors.red,
+            ),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(success 
+                ? 'The registration API is working correctly!'
+                : 'The registration API test failed.'
+              ),
+              const SizedBox(height: 16),
+              const Text('Technical Details:'),
+              Text('Endpoint: ${widget.apiService.baseUrl}/register'),
+              const Text('Method: POST'),
+              const Text('Headers:'),
+              const Text('  Content-Type: application/json'),
+              const Text('  Accept: */*'),
+            ],
+          ),
           actions: [
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Fermer le dialogue
-                Navigator.of(context).pop(); // Retourner à l'écran précédent
-              },
+              onPressed: () => Navigator.pop(context),
               child: const Text('OK'),
             ),
           ],
-        );
-      },
-    );
+        ),
+      );
+    }
+  } catch (e) {
+    if (mounted) Navigator.pop(context); // Ferme le dialogue de chargement
+    
+    if (mounted) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Test Error', style: TextStyle(color: Colors.red)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Error: $e'),
+              const SizedBox(height: 16),
+              const Text('Technical Details:'),
+              Text('Endpoint: ${widget.apiService.baseUrl}/register'),
+              const Text('Method: POST'),
+              const Text('Headers:'),
+              const Text('  Content-Type: application/json'),
+              const Text('  Accept: */*'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
   }
+}
 }

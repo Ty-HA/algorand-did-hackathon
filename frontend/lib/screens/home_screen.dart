@@ -4,9 +4,15 @@ import 'credentials_screen.dart';
 import 'profile_screen.dart';
 import 'wallet_screen.dart';
 import 'ttp_screen.dart';
+import 'package:algorand_hackathon/services/api_service.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final ApiService apiService;
+
+   const HomeScreen({
+    super.key,
+    required this.apiService,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -36,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return _buildMainContent();
       case 1:
-        return const CredentialsScreen();
+        return CredentialsScreen(apiService: widget.apiService);
       case 2:
         return const TTPScreen();
       case 3:
@@ -240,14 +246,18 @@ class _HomeScreenState extends State<HomeScreen> {
   void _navigateToProfile() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ProfileScreen()),
+      MaterialPageRoute(builder: (context) => ProfileScreen(apiService: widget.apiService)),
     );
   }
 
-  void _startVerification() {
+void _startVerification() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const VerificationScreen()),
+      MaterialPageRoute(
+        builder: (context) => VerificationScreen(
+          apiService: widget.apiService,
+        ),
+      ),
     );
   }
 

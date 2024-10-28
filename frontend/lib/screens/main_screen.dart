@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'profile_screen.dart';
 import 'credentials_screen.dart';
-import 'home_screen.dart';  // N'oubliez pas d'importer HomeScreen
+import 'home_screen.dart';  
+import 'package:algorand_hackathon/services/api_service.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final ApiService apiService;
+
+  const MainScreen({Key? key, required this.apiService}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -13,12 +16,26 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   
-  final List<Widget> _screens = [
-    const ProfileScreen(),
-    const CredentialsScreen(),
-    const Center(child: Text('TTPs Coming Soon')),  // Placeholder
-    const Center(child: Text('Wallet Coming Soon')), // Placeholder
-  ];
+  late final List<Widget> _screens;
+
+  @override
+  void initState() {
+    super.initState();
+    _screens = [
+      ProfileScreen(apiService: widget.apiService),
+      CredentialsScreen(apiService: widget.apiService),
+      const Center(child: Text('TTPs Coming Soon')),  // Placeholder
+      const Center(child: Text('Wallet Coming Soon')), // Placeholder
+    ];
+  }
+
+  void _navigateToHome() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => HomeScreen(apiService: widget.apiService),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +46,9 @@ class _MainScreenState extends State<MainScreen> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
-          // Icône maison qui redirige vers HomeScreen
           IconButton(
             icon: const Icon(Icons.home),
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ),
-              );
-            },
+            onPressed: _navigateToHome,
           ),
         ],
         elevation: 2,

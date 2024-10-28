@@ -1,16 +1,20 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'services/wallet_service.dart';
 import 'screens/home_screen.dart';
+import 'package:algorand_hackathon/services/api_service.dart';
 
 void main() {
+  final apiService = ApiService();
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => WalletService()),
+        // Ajouter ApiService comme Provider
+        Provider.value(value: apiService),
       ],
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
@@ -20,15 +24,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Récupérer l'instance de ApiService depuis le Provider
+    final apiService = Provider.of<ApiService>(context, listen: false);
+    
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Retire la bannière debug
-      title: 'DID Identity App',
+      debugShowCheckedModeBanner: false,
+      title: 'SerendID',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const HomeScreen(), // Définit HomeScreen comme écran principal
-      // home: const MainScreen(), 
+      home: HomeScreen(apiService: apiService), // Retirer const ici
     );
   }
 }

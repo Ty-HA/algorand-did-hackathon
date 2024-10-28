@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:algorand_hackathon/services/api_service.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  final ApiService apiService;
+
+  const ProfileScreen({Key? key, required this.apiService}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();

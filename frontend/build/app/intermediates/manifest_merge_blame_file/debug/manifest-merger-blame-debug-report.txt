@@ -29,34 +29,34 @@
 19-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:6:22-78
 20
 21    <queries>
-21-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:52:5-67:15
+21-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:53:5-68:15
 22
 23        <!-- Package Pera Wallet -->
 24        <package android:name="com.perawallet.app" />
-24-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:54:9-54
-24-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:54:18-51
+24-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:55:9-54
+24-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:55:18-51
 25
 26        <!-- URLs HTTPS -->
 27        <intent>
-27-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:57:9-60:18
+27-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:58:9-61:18
 28            <action android:name="android.intent.action.VIEW" />
-28-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:58:13-65
-28-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:58:21-62
+28-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-65
+28-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:21-62
 29
 30            <data android:scheme="https" />
-30-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-44
-30-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:19-41
+30-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:13-44
+30-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:19-41
 31        </intent>
 32
 33        <!-- Traitement du texte -->
 34        <intent>
-34-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:63:9-66:18
+34-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:64:9-67:18
 35            <action android:name="android.intent.action.PROCESS_TEXT" />
-35-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:64:13-73
-35-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:64:21-70
+35-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:65:13-73
+35-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:65:21-70
 36
 37            <data android:mimeType="text/plain" />
-37-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-44
+37-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:13-44
 38        </intent>
 39        <!-- Needs to be explicitly declared on Android R+ -->
 40        <package android:name="com.google.android.apps.maps" />
@@ -89,168 +89,169 @@
 56        android:debuggable="true"
 57        android:extractNativeLibs="true"
 58        android:icon="@mipmap/ic_launcher"
-59        android:label="algorand_hackathon" >
-60        <activity
-61            android:name="com.example.algorand_hackathon.MainActivity"
-62            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-63            android:exported="true"
-64            android:hardwareAccelerated="true"
-65            android:launchMode="singleTop"
-66            android:theme="@style/LaunchTheme"
-67            android:windowSoftInputMode="adjustResize" >
-68            <meta-data
-69                android:name="io.flutter.embedding.android.NormalTheme"
-70                android:resource="@style/NormalTheme" />
-71            <meta-data
-72                android:name="com.google.android.geo.API_KEY"
-73                android:value="AIzaSyAs_rMk2YhCKeqxLuGjo-KnbjotkDCV9I4" />
-74
-75            <!-- Intent principal -->
-76            <intent-filter>
-77                <action android:name="android.intent.action.MAIN" />
-78
-79                <category android:name="android.intent.category.LAUNCHER" />
-80            </intent-filter>
-81
-82            <!-- Intent pour Pera et WalletConnect -->
-83            <intent-filter>
-84                <action android:name="android.intent.action.VIEW" />
-84-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:58:13-65
-84-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:58:21-62
-85
-86                <category android:name="android.intent.category.DEFAULT" />
-87                <category android:name="android.intent.category.BROWSABLE" />
-88
-89                <data android:scheme="algorand-wc" />
-89-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-44
-89-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:19-41
-90                <data android:scheme="perawallet" />
-90-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-44
-90-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:19-41
-91                <data android:scheme="wc" />
-91-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-44
-91-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:19-41
-92            </intent-filter>
-93        </activity>
-94
-95        <meta-data
-96            android:name="flutterEmbedding"
-97            android:value="2" />
-98
-99        <service
-99-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-12:56
-100            android:name="com.baseflow.geolocator.GeolocatorLocationService"
-100-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-77
-101            android:enabled="true"
-101-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-35
-102            android:exported="false"
-102-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
-103            android:foregroundServiceType="location" />
-103-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-53
-104
-105        <activity
-105-->[:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-11:74
-106            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-106-->[:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-74
-107            android:exported="false"
-107-->[:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-37
-108            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-108-->[:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-71
-109
-110        <uses-library
-110-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
-111            android:name="androidx.window.extensions"
-111-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:24:13-54
-112            android:required="false" />
-112-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:25:13-37
-113        <uses-library
-113-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:26:9-28:40
-114            android:name="androidx.window.sidecar"
-114-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
-115            android:required="false" /> <!-- Needs to be explicitly declared on P+ -->
-115-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
-116        <uses-library
-116-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
-117            android:name="org.apache.http.legacy"
-117-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:40:13-50
-118            android:required="false" />
-118-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:41:13-37
-119
-120        <activity
-120-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
-121            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-121-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
-122            android:exported="false"
-122-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
-123            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-123-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
-124
-125        <meta-data
-125-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
-126            android:name="com.google.android.gms.version"
-126-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
-127            android:value="@integer/google_play_services_version" />
-127-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
-128
-129        <provider
-129-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:24:9-32:20
-130            android:name="androidx.startup.InitializationProvider"
-130-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:25:13-67
-131            android:authorities="com.example.algorand_hackathon.androidx-startup"
-131-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:26:13-68
-132            android:exported="false" >
-132-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:27:13-37
-133            <meta-data
-133-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
-134                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-134-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
-135                android:value="androidx.startup" />
-135-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
-136            <meta-data
-136-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
-137                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-137-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
-138                android:value="androidx.startup" />
-138-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
-139        </provider>
-140
-141        <receiver
-141-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
-142            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-142-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
-143            android:directBootAware="false"
-143-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
-144            android:enabled="true"
-144-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
-145            android:exported="true"
-145-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
-146            android:permission="android.permission.DUMP" >
-146-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
-147            <intent-filter>
-147-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
-148                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-148-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
-148-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
-149            </intent-filter>
-150            <intent-filter>
-150-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
-151                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-151-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
-151-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
-152            </intent-filter>
-153            <intent-filter>
-153-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
-154                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-154-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
-154-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
-155            </intent-filter>
-156            <intent-filter>
-156-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
-157                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-157-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
-157-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
-158            </intent-filter>
-159        </receiver>
-160    </application>
-161
-162</manifest>
+59        android:label="algorand_hackathon"
+60        android:usesCleartextTraffic="true" >
+61        <activity
+62            android:name="com.example.algorand_hackathon.MainActivity"
+63            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+64            android:exported="true"
+65            android:hardwareAccelerated="true"
+66            android:launchMode="singleTop"
+67            android:theme="@style/LaunchTheme"
+68            android:windowSoftInputMode="adjustResize" >
+69            <meta-data
+70                android:name="io.flutter.embedding.android.NormalTheme"
+71                android:resource="@style/NormalTheme" />
+72            <meta-data
+73                android:name="com.google.android.geo.API_KEY"
+74                android:value="AIzaSyAs_rMk2YhCKeqxLuGjo-KnbjotkDCV9I4" />
+75
+76            <!-- Intent principal -->
+77            <intent-filter>
+78                <action android:name="android.intent.action.MAIN" />
+79
+80                <category android:name="android.intent.category.LAUNCHER" />
+81            </intent-filter>
+82
+83            <!-- Intent pour Pera et WalletConnect -->
+84            <intent-filter>
+85                <action android:name="android.intent.action.VIEW" />
+85-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-65
+85-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:21-62
+86
+87                <category android:name="android.intent.category.DEFAULT" />
+88                <category android:name="android.intent.category.BROWSABLE" />
+89
+90                <data android:scheme="algorand-wc" />
+90-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:13-44
+90-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:19-41
+91                <data android:scheme="perawallet" />
+91-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:13-44
+91-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:19-41
+92                <data android:scheme="wc" />
+92-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:13-44
+92-->D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:19-41
+93            </intent-filter>
+94        </activity>
+95
+96        <meta-data
+97            android:name="flutterEmbedding"
+98            android:value="2" />
+99
+100        <service
+100-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-12:56
+101            android:name="com.baseflow.geolocator.GeolocatorLocationService"
+101-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-77
+102            android:enabled="true"
+102-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-35
+103            android:exported="false"
+103-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
+104            android:foregroundServiceType="location" />
+104-->[:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-53
+105
+106        <activity
+106-->[:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-11:74
+107            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+107-->[:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-74
+108            android:exported="false"
+108-->[:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-37
+109            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+109-->[:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-71
+110
+111        <uses-library
+111-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
+112            android:name="androidx.window.extensions"
+112-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:24:13-54
+113            android:required="false" />
+113-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:25:13-37
+114        <uses-library
+114-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:26:9-28:40
+115            android:name="androidx.window.sidecar"
+115-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
+116            android:required="false" /> <!-- Needs to be explicitly declared on P+ -->
+116-->[androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
+117        <uses-library
+117-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
+118            android:name="org.apache.http.legacy"
+118-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:40:13-50
+119            android:required="false" />
+119-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:41:13-37
+120
+121        <activity
+121-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+122            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+122-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+123            android:exported="false"
+123-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+124            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+124-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+125
+126        <meta-data
+126-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+127            android:name="com.google.android.gms.version"
+127-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+128            android:value="@integer/google_play_services_version" />
+128-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+129
+130        <provider
+130-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:24:9-32:20
+131            android:name="androidx.startup.InitializationProvider"
+131-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:25:13-67
+132            android:authorities="com.example.algorand_hackathon.androidx-startup"
+132-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:26:13-68
+133            android:exported="false" >
+133-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:27:13-37
+134            <meta-data
+134-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+135                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+135-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+136                android:value="androidx.startup" />
+136-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+137            <meta-data
+137-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+138                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+138-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+139                android:value="androidx.startup" />
+139-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+140        </provider>
+141
+142        <receiver
+142-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+143            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+143-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+144            android:directBootAware="false"
+144-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+145            android:enabled="true"
+145-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+146            android:exported="true"
+146-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+147            android:permission="android.permission.DUMP" >
+147-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+148            <intent-filter>
+148-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+149                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+149-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+149-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+150            </intent-filter>
+151            <intent-filter>
+151-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+152                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+152-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+152-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+153            </intent-filter>
+154            <intent-filter>
+154-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+155                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+155-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+155-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+156            </intent-filter>
+157            <intent-filter>
+157-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+158                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+158-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+158-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+159            </intent-filter>
+160        </receiver>
+161    </application>
+162
+163</manifest>

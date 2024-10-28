@@ -56,7 +56,8 @@
         android:debuggable="true"
         android:extractNativeLibs="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="algorand_hackathon" >
+        android:label="algorand_hackathon"
+        android:usesCleartextTraffic="true" >
         <activity
             android:name="com.example.algorand_hackathon.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

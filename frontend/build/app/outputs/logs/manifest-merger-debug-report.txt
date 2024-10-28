@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:8:5-50:19
+INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:8:5-51:19
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
@@ -37,12 +37,12 @@ MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\bicht\.g
 	android:name
 		INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml
 meta-data#com.google.android.geo.API_KEY
-INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:25:13-27:55
+INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:26:13-28:55
 	android:value
 		INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:1:1-68:12
-MERGED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:1:1-68:12
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
+MERGED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -120,29 +120,29 @@ ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\
 	android:name
 		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:6:22-78
 queries
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:52:5-67:15
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:53:5-68:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 package#com.perawallet.app
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:54:9-54
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:55:9-54
 	android:name
-		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:54:18-51
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:55:18-51
 intent#action:name:android.intent.action.VIEW+data:scheme:https
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:57:9-60:18
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:58:9-61:18
 action#android.intent.action.VIEW
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:58:13-65
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-65
 	android:name
-		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:58:21-62
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:21-62
 data
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-44
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:13-44
 	android:scheme
-		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:19-41
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:19-41
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:63:9-66:18
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:64:9-67:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:64:13-73
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:65:13-73
 	android:name
-		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:64:21-70
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:65:21-70
 uses-sdk
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
