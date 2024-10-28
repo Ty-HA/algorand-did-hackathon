@@ -154,12 +154,18 @@ pytest test_main.py
 
 ### 4.2 Test DID Registration
 ```bash
-python test_registration.py
+python registration.py
 ```
+
+## You can check the logs file to get your Algo wallet address and Passphrase
+\backend\logs
+
+## Get Faucets before create Onchain DID with the wallet and Mnemonic
+https://bank.testnet.algorand.network/
 
 ### 4.3 Test On-chain Verification
 ```python
-python test_did_verification.py
+python verification_existing_account.py
 ```
 
 ## 5. Pera Explorer Integration
