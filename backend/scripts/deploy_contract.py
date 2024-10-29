@@ -4,12 +4,19 @@ import base64
 import os
 import sys
 import time
+import json
 
 # Add the backend directory to the path
 backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, backend_dir)
 
 from config import ALGOD_ADDRESS, ALGOD_TOKEN
+
+def ensure_directory_exists(file_path):
+    """Ensure the directory exists for the given file path"""
+    directory = os.path.dirname(file_path)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 def compile_program(client, source_code):
     """Compile TEAL source code to binary"""
@@ -92,10 +99,16 @@ def deploy_contract():
             "transaction_id": tx_id
         }
         
-        with open("deployment_info.json", "w") as f:
-            import json
+        # Define the path for deployment info
+        deployment_file = os.path.join(backend_dir, "logs", "deployments", "contract_deployment.json")
+        
+        # Ensure the directory exists
+        ensure_directory_exists(deployment_file)
+        
+        # Save the deployment info
+        with open(deployment_file, "w") as f:
             json.dump(deployment_info, f, indent=2)
-            print(f"\nDeployment info saved to deployment_info.json")
+            print(f"\nDeployment info saved to {deployment_file}")
         
         return app_id
     

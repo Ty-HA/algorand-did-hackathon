@@ -164,3 +164,4 @@ curl -X POST http://localhost:8000/register \
 ```bash
 curl http://localhost:8000/resolve/did:algo:YOUR_GENERATED_ADDRESS
 ```
+

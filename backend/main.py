@@ -61,7 +61,8 @@ async def register_did_endpoint(request: DIDRegistrationRequest) -> Dict[str, An
 @app.get("/resolve/{did}")
 async def resolve_did_endpoint(did: str) -> Dict[str, Any]:
     try:
-        return resolve_did(did)
+        result = await resolve_did(did)
+        return result
     except Exception as e:
         logger.error(f"DID resolution failed: {str(e)}")
         raise HTTPException(status_code=404, detail=str(e))
@@ -92,18 +93,6 @@ async def health_check() -> Dict[str, str]:
     Simple health check endpoint.
     """
     return {"status": "healthy", "version": "1.0.0"}
-
-@app.post("/register-onchain")
-async def register_onchain() -> RegistrationResponse:
-    try:
-        # Implement your onchain registration logic here
-        return RegistrationResponse(
-            status="success",
-            did="did:algo:example",
-            message="Registration successful"
-        )
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/verify-did/{transaction_id}")
 async def verify_did(transaction_id: str) -> Dict[str, Any]:

@@ -47,9 +47,13 @@ async def create_testnet_account() -> Dict[str, str]:
     }
 
 def get_deployer_account() -> Dict[str, str]:
-    """Get the deployer account info from deployment_info.json"""
+    """Get the deployer account info from logs/deployments/contract_deployment.json"""
     try:
-        with open("deployment_info.json", "r") as f:
+        deployment_file = os.path.join("logs", "deployments", "contract_deployment.json")
+        if not os.path.exists(deployment_file):
+            raise Exception(f"Deployment info not found at {deployment_file}")
+            
+        with open(deployment_file, "r") as f:
             deployment_info = json.load(f)
             return {
                 "address": deployment_info["address"],

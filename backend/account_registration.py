@@ -8,6 +8,7 @@ import time
 import json
 from base58 import b58encode
 from datetime import datetime
+import os
 
 # Configuration du logging
 logging.basicConfig(
@@ -34,20 +35,62 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Fonction pour sauvegarder les informations sensibles
+def ensure_directory_exists(file_path):
+    """Ensure the directory exists for the given file path"""
+    directory = os.path.dirname(file_path)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
 def save_account_info(account_data):
-    """Sauvegarde les informations du compte dans un fichier sécurisé."""
-    filename = f"logs/account_info_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+    """Save account information to logs/accounts/accounts_record.json"""
+    accounts_file = os.path.join("logs", "accounts", "accounts_record.json")
+    
+    # Ensure the directory exists
+    ensure_directory_exists(accounts_file)
+    
+    # Load existing accounts or create new structure
     try:
-        with open(filename, 'w') as f:
+        if os.path.exists(accounts_file):
+            with open(accounts_file, 'r') as f:
+                accounts = json.load(f)
+        else:
+            accounts = {"accounts": []}
+    except Exception as e:
+        logger.error(f"Error loading accounts file: {e}")
+        accounts = {"accounts": []}
+
+    # Add new account with timestamp
+    account_record = {
+        "label": f"account_{len(accounts['accounts']) + 1}",
+        "address": account_data["address"],
+        "passphrase": account_data["passphrase"],
+        "did": account_data["did"],
+        "transaction_id": account_data["transaction_id"],
+        "created_at": datetime.now().isoformat(),
+        "funded": False,
+        "balance": 0,
+        "transactions": []
+    }
+    
+    accounts["accounts"].append(account_record)
+
+    # Save updated accounts
+    try:
+        with open(accounts_file, 'w') as f:
+            json.dump(accounts, f, indent=2)
+        logger.info(f"Account information saved to {accounts_file}")
+        
+        # Also save sensitive info to separate log file
+        sensitive_log = os.path.join("logs", "accounts", f"account_info_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt")
+        with open(sensitive_log, 'w') as f:
             f.write("=== ACCOUNT INFORMATION ===\n")
             f.write(f"Address: {account_data['address']}\n")
             f.write(f"Mnemonic: {account_data['passphrase']}\n")
             f.write(f"DID: {account_data['did']}\n")
             f.write(f"Transaction ID: {account_data['transaction_id']}\n")
             f.write("=========================\n")
-        logger.info(f"Account information saved to {filename}")
-        return filename
+        
+        return accounts_file
     except Exception as e:
         logger.error(f"Failed to save account info: {e}")
         return None
@@ -164,38 +207,38 @@ def verify_onchain_did(client, transaction_id):
         return {"status": "failed", "error": str(e)}
 
 def register_user():
-    """Enregistre un nouvel utilisateur avec logging détaillé."""
+    """Register a new user with logging detailed."""
     try:
         logger.info("Starting user registration process...")
         
-        # Générer un nouveau compte
+        # Generate new account
         private_key, address = account.generate_account()
         logger.info("=== IMPORTANT: SAVE THESE DETAILS ===")
         logger.info(f"Address: {address}")
         
-        # Générer la phrase mnémonique
+        # Generate mnemonic
         passphrase = mnemonic.from_private_key(private_key)
         logger.info(f"Mnemonic Passphrase: {passphrase}")
         logger.info("==============================")
         
-        # Créer le DID
+        # Create DID
         did = create_did_from_address(address)
         logger.info(f"Created DID: {did}")
         
         try:
-            # Tenter la transaction on-chain
+            # Attempt on-chain transaction
             client = get_algod_client()
             params = client.suggested_params()
             logger.debug(f"Network parameters: {params.__dict__}")
             
-            # Créer une note avec le DID
+            # Create note with DID
             note = json.dumps({
                 "type": "DID_REGISTRATION",
                 "did": did,
                 "timestamp": int(time.time())
             }).encode()
 
-            # Créer la transaction
+            # Create transaction
             unsigned_txn = transaction.PaymentTxn(
                 sender=address,
                 sp=params,
@@ -214,7 +257,7 @@ def register_user():
             logger.error(f"Transaction failed: {tx_error}")
             tx_id = "FAILED_TX_" + base64.b64encode(address.encode()).decode()[:16]
 
-        # Sauvegarder toutes les informations
+        # Save account information
         account_data = {
             "address": address,
             "passphrase": passphrase,

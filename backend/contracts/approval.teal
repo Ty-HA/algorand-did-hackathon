@@ -27,6 +27,10 @@ handle_application:
 
 handle_create:
     // Allow anyone to create the application
+    // Store deployer address for future reference
+    byte "deployer"
+    txn Sender
+    app_global_put
     int 1
     return
 
@@ -46,7 +50,7 @@ handle_noop:
     b reject
 
 handle_register:
-    // Check if sender is the deployer
+    // Allow registration from deployer
     byte "deployer"
     app_global_get
     txn Sender
