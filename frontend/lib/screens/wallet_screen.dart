@@ -26,7 +26,7 @@ class WalletScreen extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Colors.blue, Colors.blueAccent],
+                  colors: [ Color.fromARGB(255, 229, 16, 162), Color.fromARGB(255, 242, 78, 116)],
                 ),
               ),
               child: Column(

@@ -98,7 +98,7 @@
 59        android:debuggable="true"
 60        android:extractNativeLibs="true"
 61        android:icon="@mipmap/ic_launcher"
-62        android:label="SerendID"
+62        android:label="NexusID"
 63        android:requestLegacyExternalStorage="true"
 64        android:usesCleartextTraffic="true" >
 65        <activity

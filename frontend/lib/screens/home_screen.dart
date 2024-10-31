@@ -9,7 +9,7 @@ import 'package:algorand_hackathon/services/api_service.dart';
 class HomeScreen extends StatefulWidget {
   final ApiService apiService;
 
-   const HomeScreen({
+  const HomeScreen({
     super.key,
     required this.apiService,
   });
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildIdentityCard() {
     return Center(
-      child: Card(
+        child: Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Padding(
@@ -198,7 +198,8 @@ class _HomeScreenState extends State<HomeScreen> {
               margin: const EdgeInsets.only(bottom: 8),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: credential['verified'] ? Colors.green : Colors.orange,
+                  backgroundColor:
+                      credential['verified'] ? Colors.green : Colors.orange,
                   child: Icon(
                     credential['verified'] ? Icons.verified : Icons.pending,
                     color: Colors.white,
@@ -246,11 +247,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void _navigateToProfile() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ProfileScreen(apiService: widget.apiService)),
+      MaterialPageRoute(
+          builder: (context) => ProfileScreen(apiService: widget.apiService)),
     );
   }
 
-void _startVerification() {
+  void _startVerification() {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -269,16 +271,14 @@ void _startVerification() {
     debugPrint('Viewing credential details: ${credential['title']}');
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text(
-          'SerendID',
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Image.asset(
+          'assets/images/logo.png',
+          height: 32.0, // Ajustez la taille de l'image selon vos besoins
         ),
         actions: [
           IconButton(
@@ -297,7 +297,7 @@ void _startVerification() {
         currentIndex: _selectedIndex,
         onTap: (index) => setState(() => _selectedIndex = index),
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: const Color.fromARGB(255, 229, 16, 162),
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
@@ -318,7 +318,6 @@ void _startVerification() {
           ),
         ],
       ),
-      
     );
   }
 }
