@@ -304,7 +304,7 @@ void _openAlgoExplorer(String txId) async {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Could not open AlgoExplorer'),
+          content: Text('Could not open Perawallet Explorer'),
           backgroundColor: Colors.red,
         ),
       );
