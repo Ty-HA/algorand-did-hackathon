@@ -1,0 +1,44 @@
+# Sensitive information and logs directory
+logs/
+logs/*.txt
+logs/*.json
+logs/accounts/
+logs/deployments/
+**/account_info_*.txt
+**/deployment_info.json
+**/accounts_record.json
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+*.sqlite
