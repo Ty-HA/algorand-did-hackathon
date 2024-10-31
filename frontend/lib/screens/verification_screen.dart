@@ -436,7 +436,7 @@ void _openAlgoExplorer(String txId) async {
                 TextButton.icon(
                   onPressed: () => _openAlgoExplorer(_transactionId!),
                   icon: const Icon(Icons.open_in_new),
-                  label: const Text('View on AlgoExplorer'),
+                  label: const Text('View on Pera Explorer'),
                 ),
               ],
               
