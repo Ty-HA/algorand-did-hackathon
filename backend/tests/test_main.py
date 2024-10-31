@@ -20,16 +20,13 @@ def test_health_check(test_client):
     assert response.json() == {"status": "healthy", "version": "1.0.0"}
 
 def test_register_did(test_client, mock_did_document, test_keys):
-    with patch('main.register_did_with_document') as mock_register, \
-         patch('did_management.verify_existing_did') as mock_verify:
-        
-        mock_verify.return_value = {"has_did": False}
+    with patch('main.register_user') as mock_register:  # Changé ici
         mock_register.return_value = {
             "did": "did:algo:test123",
             "didDocument": mock_did_document,
+            "address": test_keys["address"],
             "transaction_id": "test_tx_id",
-            "confirmation_round": 1000,
-            "explorer_link": "https://testnet.explorer.perawallet.app/tx/test_tx_id"
+            "passphrase": "test passphrase"
         }
         
         test_data = {
@@ -74,3 +71,5 @@ def test_update_did(test_client, mock_did_document):
         assert response.status_code == 200
         data = response.json()
         assert data["status"] == "success"
+
+        

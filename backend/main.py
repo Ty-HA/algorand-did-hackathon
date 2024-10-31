@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Dict, Any
 import logging
+from algosdk import account, mnemonic  # Ajoutez ces imports
 from did_management import register_did, resolve_did, get_algod_client
 from data_display import display_user_data
 from did_update import update_did
@@ -47,12 +48,32 @@ class RegistrationResponse(BaseModel):
 @app.post("/register")
 async def register_did_endpoint(request: DIDRegistrationRequest) -> Dict[str, Any]:
     try:
-        account_info = {
-            "address": request.address,
-            "private_key": request.private_key,
-            "mnemonic": request.mnemonic
-        }
+        # Générer un nouveau compte Algorand si aucune adresse n'est fournie
+        if not request.address:
+            # Créer un nouveau compte
+            private_key, address = account.generate_account()
+            passphrase = mnemonic.from_private_key(private_key)
+            
+            # Créer les informations du compte
+            account_info = {
+                "address": address,
+                "private_key": private_key,
+                "passphrase": passphrase
+            }
+        else:
+            account_info = {
+                "address": request.address,
+                "private_key": request.private_key,
+                "mnemonic": request.mnemonic
+            }
+
+        # Enregistrer le DID
         result = await register_did(account_info)
+        
+        # Ajouter la passphrase à la réponse si un nouveau compte a été créé
+        if not request.address:
+            result["passphrase"] = passphrase
+            
         return result
     except Exception as e:
         logger.error(f"Registration failed: {str(e)}")

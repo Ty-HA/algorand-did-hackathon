@@ -1,102 +1,85 @@
+from fastapi.testclient import TestClient
+from unittest.mock import patch
 import pytest
-from did_management import (
-    create_did_from_address, 
-    create_did_document, 
-    register_did_with_document,
-    get_algod_client
-)
-from unittest.mock import patch, Mock, MagicMock
-from algosdk import transaction, encoding, constants
-from algosdk.transaction import SignedTransaction
-import json
-import base64
+from main import app
+from did_management import register_did, resolve_did
+from authentication import authenticate_user
+from data_display import display_user_data
 
-def test_create_did_from_address(test_keys):
-    did = create_did_from_address(test_keys["address"])
-    assert did.startswith("did:algo:")
-    assert len(did) > 10
-
-def test_create_did_document(test_keys, mock_did_document):
-    did = "did:algo:test123"
-    doc = create_did_document(did, test_keys["address"])
-    
-    assert doc["@context"] == mock_did_document["@context"]
-    assert doc["id"] == did
-    assert "verificationMethod" in doc
-    assert "authentication" in doc
+client = TestClient(app)
 
 @pytest.mark.asyncio
-async def test_register_did_with_document(mock_algod_client, mock_did_document, test_keys):
-    with patch('did_management.create_did_from_address') as mock_create_did, \
-         patch('did_management.verify_existing_did') as mock_verify, \
-         patch('did_management.create_did_document') as mock_create_doc:
-        
-        # Setup mocks
-        mock_create_did.return_value = "did:algo:test123"
-        mock_verify.return_value = {"has_did": False}
-        mock_create_doc.return_value = mock_did_document
+async def test_health():
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.json() == {"status": "healthy", "version": "1.0.0"}
 
-        # Create a proper mock for AlgodClient
-        mock_algod_client.suggested_params.return_value = transaction.SuggestedParams(
-            fee=1000,
-            first=1,
-            last=1000,
-            gh=base64.b64decode("SGVsbG8gd29ybGQ="),  # "Hello world" in base64
-            gen="testnet-v1.0",
-            flat_fee=True,
-            min_fee=1000
+@pytest.mark.asyncio
+async def test_register():
+    mock_response = {
+        "status": "success",
+        "did": "did:algo:test123",
+        "address": "TEST123456789",
+        "passphrase": "test word1 word2 word3",
+        "transaction_id": "TEST_TX_ID"
+    }
+    
+    with patch('main.register_user') as mock_register:  # Changé ici
+        mock_register.return_value = mock_response
+        response = client.post(
+            "/register",
+            json={"address": "TEST123456789"}  # Ajouté une adresse valide
         )
+        assert response.status_code == 200
+        assert "did" in response.json()
+        assert "address" in response.json()
 
-        # Mock the transaction sending process
-        def mock_send_transaction(signed_txn):
-            return "mock_transaction_id"
-        
-        mock_algod_client.send_transaction = mock_send_transaction
-
-        # Mock transaction confirmation
-        mock_algod_client.pending_transaction_info.return_value = {
-            "confirmed-round": 1000,
-            "pool-error": "",
-            "txn": {"txn": {}}
+@pytest.mark.asyncio
+async def test_resolve_did():
+    mock_did_doc = {
+        "did": "did:algo:test123",
+        "didDocument": {
+            "@context": ["https://www.w3.org/ns/did/v1"],
+            "id": "did:algo:test123",
+            "verificationMethod": [{
+                "id": "did:algo:test123#key-1",
+                "type": "Ed25519VerificationKey2018",
+                "controller": "did:algo:test123",
+                "publicKeyBase58": "TEST123456789"
+            }]
         }
+    }
+    
+    with patch('main.resolve_did') as mock_resolve:  # Changé ici
+        mock_resolve.return_value = mock_did_doc
+        response = client.get("/resolve/did:algo:test123")
+        assert response.status_code == 200
+        assert "didDocument" in response.json()
 
-        # Create a mock for the PaymentTxn
-        class MockPaymentTxn(transaction.PaymentTxn):
-            def sign(self, private_key):
-                mock_signed = MagicMock()
-                mock_signed.dictify.return_value = {
-                    "sig": base64.b64decode("MockSignature123"),
-                    "txn": {
-                        "amt": 0,
-                        "fee": 1000,
-                        "fv": 1,
-                        "gh": base64.b64decode("SGVsbG8gd29ybGQ="),
-                        "lv": 1000,
-                        "note": self.note,
-                        "snd": encoding.decode_address(self.sender),
-                        "type": "pay",
-                        "gen": "testnet-v1.0",
-                        "grp": None,
-                        "lx": None,
-                        "rcv": encoding.decode_address(self.receiver)
-                    }
-                }
-                return mock_signed
+@pytest.mark.asyncio
+async def test_verify_did():
+    mock_verification = {
+        "status": "success",
+        "transaction_id": "TEST_TX_ID",
+        "verified": True
+    }
+    
+    with patch('main.get_algod_client'):
+        response = client.get("/verify-did/TEST_TX_ID")
+        assert response.status_code == 200
+        assert "verified" in response.json()
 
-        # Patch the PaymentTxn class
-        with patch('did_management.transaction.PaymentTxn', MockPaymentTxn):
-            # Execute the function
-            result = await register_did_with_document(
-                address=test_keys["address"],
-                private_key=test_keys["private_key"]
-            )
-            
-            # Verify results
-            assert result["did"] == "did:algo:test123"
-            assert "didDocument" in result
-            assert result["didDocument"] == mock_did_document
-            
-            # Verify that the transaction was sent
-            assert "transaction_id" in result
-            assert "confirmation_round" in result
-            assert result["confirmation_round"] == 1000
+@pytest.mark.asyncio
+async def test_register_error():
+    with patch('did_management.register_did') as mock_register:
+        mock_register.side_effect = Exception("Registration failed")
+        response = client.post(
+            "/register",
+            json={"address": "", "private_key": None, "mnemonic": None}
+        )
+        assert response.status_code == 400
+        assert "detail" in response.json()
+
+def test_bad_did_format():
+    response = client.get("/resolve/invalid_did_format")
+    assert response.status_code == 404

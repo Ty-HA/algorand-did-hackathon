@@ -1,23 +1,25 @@
 -- Merging decision tree log ---
 application
-INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:8:5-51:19
+INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:11:5-55:19
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
+MERGED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-32:19
+MERGED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-32:19
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-12:19
-MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
-MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
-MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
+MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\bicht\.gradle\caches\transforms-3\3cf64d7fdf85fb647b3a1a2b1803be26\transformed\jetified-play-services-tasks-18.0.2\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\bicht\.gradle\caches\transforms-3\3cf64d7fdf85fb647b3a1a2b1803be26\transformed\jetified-play-services-tasks-18.0.2\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:20:5-24:19
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
+MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
 MERGED from [androidx.core:core:1.13.1] C:\Users\bicht\.gradle\caches\transforms-3\c666c258fca39b3353b46678a6b928ab\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
 MERGED from [androidx.core:core:1.13.1] C:\Users\bicht\.gradle\caches\transforms-3\c666c258fca39b3353b46678a6b928ab\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:23:5-33:19
@@ -37,36 +39,37 @@ MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\bicht\.g
 	android:name
 		INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml
 meta-data#com.google.android.geo.API_KEY
-INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:26:13-28:55
+INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:30:13-32:55
 	android:value
 		INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
-MERGED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:1:1-73:12
+MERGED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:1:1-73:12
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 MERGED from [:google_maps_flutter_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-34:12
 MERGED from [:flutter_plugin_android_lifecycle] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:shared_preferences_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-14:12
-MERGED from [androidx.browser:browser:1.8.0] C:\Users\bicht\.gradle\caches\transforms-3\9a7a783aa8682aaa028c57031d48c15e\transformed\browser-1.8.0\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:17:1-31:12
-MERGED from [androidx.window:window-java:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\bf78d940cc78ca45c77421e3af64376e\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:17:1-21:12
-MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:17:1-44:12
+MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\bicht\.gradle\caches\transforms-3\3cf64d7fdf85fb647b3a1a2b1803be26\transformed\jetified-play-services-tasks-18.0.2\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:16:1-26:12
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\bicht\.gradle\caches\transforms-3\a49cd171355a6a39687e69f028c8bcbc\transformed\fragment-1.7.1\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.activity:activity:1.8.1] C:\Users\bicht\.gradle\caches\transforms-3\3e4063b07db37bd08626b21245b0f82d\transformed\jetified-activity-1.8.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.9.2] C:\Users\bicht\.gradle\caches\transforms-3\2d91bc83866874eb6317ae5ae27d2dc9\transformed\jetified-activity-1.9.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.browser:browser:1.8.0] C:\Users\bicht\.gradle\caches\transforms-3\9a7a783aa8682aaa028c57031d48c15e\transformed\browser-1.8.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.window:window-java:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\bf78d940cc78ca45c77421e3af64376e\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:17:1-21:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\2b9c9404689a5c622c078d5da9ff626f\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\878dadbdc8c0f130b446b0870752f824\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\4befdc7f9fed1e5c6647eae72672d219\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\9c28b5c7a2d23237247570dbf8382af1\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\52dfd6d7c21c1e36dbdf0d304093d642\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\9ec76326f098fb11057ae8a1fda52a48\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\52dfd6d7c21c1e36dbdf0d304093d642\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\ca2eed4266fd24517e583e6618aa3924\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\bicht\.gradle\caches\transforms-3\58accd456bc756075136cc5a7dae18d3\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\86808e134507e15e9d79206184913f8b\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -76,6 +79,7 @@ MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\bicht\.gradle\
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\bicht\.gradle\caches\transforms-3\010887bb3359843376c02ecf4bf2ef43\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\7374f32381d954e34124ee720ff47df8\transformed\jetified-datastore-preferences-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\1471cc351ba4f9046368b464c95dce27\transformed\jetified-datastore-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.7] C:\Users\bicht\.gradle\caches\transforms-3\a2372249e209203821b1165d3e2f3c5b\transformed\exifinterface-1.3.7\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:17:1-55:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\bicht\.gradle\caches\transforms-3\53f114d110e356c36b5f50ab357f361f\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\fee79d0d8ef3af5dbc14ef6d22d028cf\transformed\jetified-tracing-1.2.0\AndroidManifest.xml:17:1-22:12
@@ -119,36 +123,50 @@ uses-permission#android.permission.ACCESS_COARSE_LOCATION
 ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:6:5-80
 	android:name
 		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:6:22-78
+uses-permission#android.permission.CAMERA
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:7:5-64
+	android:name
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:7:22-62
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:8:5-80
+	android:name
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:8:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:9:22-77
 queries
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:53:5-68:15
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:57:5-72:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 package#com.perawallet.app
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:55:9-54
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:9-54
 	android:name
-		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:55:18-51
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:18-51
 intent#action:name:android.intent.action.VIEW+data:scheme:https
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:58:9-61:18
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:62:9-65:18
 action#android.intent.action.VIEW
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:13-65
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:63:13-65
 	android:name
-		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:59:21-62
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:63:21-62
 data
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:13-44
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:64:13-44
 	android:scheme
-		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:60:19-41
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:64:19-41
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:64:9-67:18
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:68:9-71:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:65:13-73
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:69:13-73
 	android:name
-		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:65:21-70
+		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:69:21-70
 uses-sdk
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
 INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
 MERGED from [:google_maps_flutter_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:google_maps_flutter_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:6:5-44
+MERGED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:6:5-44
 MERGED from [:flutter_plugin_android_lifecycle] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
@@ -157,16 +175,10 @@ MERGED from [:shared_preferences_android] D:\PROJECTS\flutter_projects\algorand_
 MERGED from [:shared_preferences_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [androidx.browser:browser:1.8.0] C:\Users\bicht\.gradle\caches\transforms-3\9a7a783aa8682aaa028c57031d48c15e\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.browser:browser:1.8.0] C:\Users\bicht\.gradle\caches\transforms-3\9a7a783aa8682aaa028c57031d48c15e\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.window:window-java:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\bf78d940cc78ca45c77421e3af64376e\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
-MERGED from [androidx.window:window-java:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\bf78d940cc78ca45c77421e3af64376e\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
-MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\bicht\.gradle\caches\transforms-3\3cf64d7fdf85fb647b3a1a2b1803be26\transformed\jetified-play-services-tasks-18.0.2\AndroidManifest.xml:4:5-43
@@ -175,8 +187,14 @@ MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\bich
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:18:5-43
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\bicht\.gradle\caches\transforms-3\a49cd171355a6a39687e69f028c8bcbc\transformed\fragment-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\bicht\.gradle\caches\transforms-3\a49cd171355a6a39687e69f028c8bcbc\transformed\fragment-1.7.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity:1.8.1] C:\Users\bicht\.gradle\caches\transforms-3\3e4063b07db37bd08626b21245b0f82d\transformed\jetified-activity-1.8.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.8.1] C:\Users\bicht\.gradle\caches\transforms-3\3e4063b07db37bd08626b21245b0f82d\transformed\jetified-activity-1.8.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.9.2] C:\Users\bicht\.gradle\caches\transforms-3\2d91bc83866874eb6317ae5ae27d2dc9\transformed\jetified-activity-1.9.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.9.2] C:\Users\bicht\.gradle\caches\transforms-3\2d91bc83866874eb6317ae5ae27d2dc9\transformed\jetified-activity-1.9.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.8.0] C:\Users\bicht\.gradle\caches\transforms-3\9a7a783aa8682aaa028c57031d48c15e\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.8.0] C:\Users\bicht\.gradle\caches\transforms-3\9a7a783aa8682aaa028c57031d48c15e\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.window:window-java:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\bf78d940cc78ca45c77421e3af64376e\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
+MERGED from [androidx.window:window-java:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\bf78d940cc78ca45c77421e3af64376e\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\2b9c9404689a5c622c078d5da9ff626f\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\2b9c9404689a5c622c078d5da9ff626f\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\878dadbdc8c0f130b446b0870752f824\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
@@ -185,10 +203,10 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\bich
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\4befdc7f9fed1e5c6647eae72672d219\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\9c28b5c7a2d23237247570dbf8382af1\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\9c28b5c7a2d23237247570dbf8382af1\transformed\lifecycle-livedata-2.7.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\52dfd6d7c21c1e36dbdf0d304093d642\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\52dfd6d7c21c1e36dbdf0d304093d642\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\9ec76326f098fb11057ae8a1fda52a48\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\9ec76326f098fb11057ae8a1fda52a48\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\52dfd6d7c21c1e36dbdf0d304093d642\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\52dfd6d7c21c1e36dbdf0d304093d642\transformed\lifecycle-viewmodel-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\ca2eed4266fd24517e583e6618aa3924\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\bicht\.gradle\caches\transforms-3\ca2eed4266fd24517e583e6618aa3924\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\bicht\.gradle\caches\transforms-3\58accd456bc756075136cc5a7dae18d3\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:5:5-44
@@ -207,6 +225,8 @@ MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\bicht\.gra
 MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\7374f32381d954e34124ee720ff47df8\transformed\jetified-datastore-preferences-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\1471cc351ba4f9046368b464c95dce27\transformed\jetified-datastore-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\1471cc351ba4f9046368b464c95dce27\transformed\jetified-datastore-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.7] C:\Users\bicht\.gradle\caches\transforms-3\a2372249e209203821b1165d3e2f3c5b\transformed\exifinterface-1.3.7\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.7] C:\Users\bicht\.gradle\caches\transforms-3\a2372249e209203821b1165d3e2f3c5b\transformed\exifinterface-1.3.7\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\bicht\.gradle\caches\transforms-3\53f114d110e356c36b5f50ab357f361f\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
@@ -229,6 +249,44 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\bicht\.
 		INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
+provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
+ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:9-17:20
+	android:grantUriPermissions
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-47
+	android:authorities
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
+	android:exported
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
+	android:name
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-82
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-16:75
+	android:resource
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-72
+	android:name
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-67
+service#com.google.android.gms.metadata.ModuleDependencies
+ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:19:9-31:19
+	android:enabled
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-36
+	android:exported
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-37
+	tools:ignore
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-40
+	android:name
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-78
+intent-filter#action:name:com.google.android.gms.metadata.MODULE_DEPENDENCIES
+ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-26:29
+action#com.google.android.gms.metadata.MODULE_DEPENDENCIES
+ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:25:17-94
+	android:name
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:25:25-91
+meta-data#photopicker_activity:0:required
+ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:28:13-30:36
+	android:value
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:17-33
+	android:name
+		ADDED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:29:17-63
 service#com.baseflow.geolocator.GeolocatorLocationService
 ADDED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-12:56
 	android:enabled
@@ -247,18 +305,6 @@ ADDED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackath
 		ADDED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-71
 	android:name
 		ADDED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-74
-uses-library#androidx.window.extensions
-ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
-	android:required
-		ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:25:13-37
-	android:name
-		ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:24:13-54
-uses-library#androidx.window.sidecar
-ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:26:9-28:40
-	android:required
-		ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
-	android:name
-		ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
@@ -291,6 +337,18 @@ MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\bicht\.g
 		ADDED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
 	android:name
 		ADDED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
+	android:required
+		ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:24:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:26:9-28:40
+	android:required
+		ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [androidx.window:window:1.2.0] C:\Users\bicht\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
 permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.13.1] C:\Users\bicht\.gradle\caches\transforms-3\c666c258fca39b3353b46678a6b928ab\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel

@@ -55,6 +55,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 ],
               ),
             ),
+            
 
             // Face Verification Section
             Card(
@@ -197,39 +198,54 @@ class _VerificationScreenState extends State<VerificationScreen> {
     }
   }
 
-  void _startFaceVerification() async {
-    // Simuler un processus de vérification
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return const AlertDialog(
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircularProgressIndicator(),
-              SizedBox(height: 16),
-              Text('Scanning face...'),
-            ],
-          ),
-        );
-      },
-    );
+void _startFaceVerification() async {
+  try {
+    showLoadingDialog('Scanning face...');
 
-    // Simuler un délai
-    await Future.delayed(const Duration(seconds: 2));
+    final result = await widget.apiService.verifyFace();
 
-    // Fermer le dialogue de chargement
-    if (mounted) Navigator.of(context).pop();
+    if (mounted) Navigator.of(context).pop(); // Fermer le dialogue de chargement
 
-    // Mettre à jour l'état
-    setState(() {
-      _faceVerified = true;
-    });
+    if (result['verified'] == true) {
+      setState(() {
+        _faceVerified = true;
+      });
+    } else {
+      throw Exception(result['message'] ?? 'Face verification failed');
+    }
+  } catch (e) {
+    if (mounted) {
+      Navigator.of(context).pop(); // Fermer le dialogue de chargement
+      showErrorDialog(e.toString());
+    }
   }
+}
 
   void _startDocumentScan() async {
-    // Simuler un processus de scan
+  try {
+    showLoadingDialog('Scanning document...');
+
+    final result = await widget.apiService.verifyDocument();
+
+    if (mounted) Navigator.of(context).pop(); // Fermer le dialogue de chargement
+
+    if (result['verified'] == true) {
+      setState(() {
+        _documentsVerified = true;
+      });
+    } else {
+      throw Exception(result['message'] ?? 'Document verification failed');
+    }
+  } catch (e) {
+    if (mounted) {
+      Navigator.of(context).pop(); // Fermer le dialogue de chargement
+      showErrorDialog(e.toString());
+    }
+  }
+}
+
+  void _completeVerification() async {
+  try {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -240,49 +256,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
             children: [
               CircularProgressIndicator(),
               SizedBox(height: 16),
-              Text('Scanning document...'),
+              Text('Registering your identity on Algorand...'),
             ],
           ),
         );
       },
     );
 
-    // Simuler un délai
-    await Future.delayed(const Duration(seconds: 2));
+    final result = await widget.apiService.registerUser();
+    debugPrint('Complete registration result: $result');
 
-    // Fermer le dialogue de chargement
-    if (mounted) Navigator.of(context).pop();
-
-    // Mettre à jour l'état
-    setState(() {
-      _documentsVerified = true;
-    });
-  }
-
-  void _completeVerification() async {
-    try {
-      // Afficher un dialogue de chargement
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return const AlertDialog(
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CircularProgressIndicator(),
-                SizedBox(height: 16),
-                Text('Registering your identity...'),
-              ],
-            ),
-          );
-        },
-      );
-
-      // Appeler l'API pour enregistrer l'utilisateur
-      final result = await widget.apiService.registerUser();
-
-      // Stocker les informations DID
+    if (result['status'] == 'success') {
       setState(() {
         _did = result['did'];
         _didAddress = result['address'];
@@ -295,124 +279,36 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
       // Afficher le dialogue de succès
       if (mounted) {
-        await showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Verification Complete'),
-              content: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Your identity has been successfully verified and registered on Algorand!',
-                      style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 16),
-                    
-                    const Text('Your DID:', 
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                    SelectableText(_did ?? 'Error retrieving DID'),
-                    const SizedBox(height: 8),
-                    
-                    const Text('Algorand Address:', 
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                    SelectableText(_didAddress ?? 'Error retrieving address'),
-                    const SizedBox(height: 8),
-                    
-                    if (_transactionId != null) ...[
-                      const Text('Transaction ID:', 
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                      SelectableText(_transactionId!),
-                      TextButton.icon(
-                        onPressed: () => _openAlgoExplorer(_transactionId!),
-                        icon: const Icon(Icons.open_in_new),
-                        label: const Text('View on AlgoExplorer'),
-                      ),
-                      const SizedBox(height: 8),
-                    ],
-                    
-                    const Divider(),
-                    
-                    const Text('Important: Save your passphrase securely', 
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold, 
-                        color: Colors.red,
-                        fontSize: 16,
-                      )),
-                    const SizedBox(height: 8),
-                    SelectableText(
-                      _didPassphrase ?? 'Error retrieving passphrase', 
-                      style: const TextStyle(
-                        fontSize: 14,
-                        height: 1.5,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Warning: Never share your passphrase with anyone!',
-                      style: TextStyle(color: Colors.red, fontSize: 12),
-                    ),
-                  ],
-                ),
-              ),
-              actions: [
-                TextButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).pop(); // Fermer le dialogue
-                    Navigator.of(context).pop(); // Retourner à l'écran précédent
-                  },
-                  icon: const Icon(Icons.check_circle),
-                  label: const Text('Done'),
-                ),
-              ],
-            );
-          },
-        );
+        showSuccessDialog();
       }
-    } catch (e) {
-      // Fermer le dialogue de chargement
-      if (mounted) Navigator.of(context).pop();
-
-      // Afficher un dialogue d'erreur
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Error', style: TextStyle(color: Colors.red)),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Registration failed: ${e.toString()}'),
-                  const SizedBox(height: 16),
-                  const Text('Please try again or contact support if the problem persists.'),
-                ],
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('OK'),
-                ),
-              ],
-            );
-          },
-        );
-      }
+    } else {
+      throw Exception('Registration failed: Invalid response from server');
+    }
+  } catch (e) {
+    debugPrint('Complete verification error: $e');
+    if (mounted) {
+      Navigator.of(context).pop(); // Fermer le dialogue de chargement
+      showErrorDialog(e.toString());
     }
   }
+}
 
 
 
-  void _openAlgoExplorer(String txId) async {
-  final uri = Uri.parse('https://testnet.algoexplorer.io/tx/$txId');
-  _launch(uri.toString());
-
+void _openAlgoExplorer(String txId) async {
+  final uri = Uri.parse('https://testnet.explorer.perawallet.app/tx/$txId');
+  
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);
+  } else {
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Could not open AlgoExplorer'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 }
 
@@ -506,4 +402,127 @@ class _VerificationScreenState extends State<VerificationScreen> {
       }
     }
   }
+
+  void showSuccessDialog() {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Verification Complete'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              
+              const Text(
+                'Your identity has been successfully verified and registered on Algorand!',
+                style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+              
+              const Text('Your DID:', style: TextStyle(fontWeight: FontWeight.bold)),
+              SelectableText(_did ?? 'Error retrieving DID'),
+              const SizedBox(height: 8),
+              
+              const Text('Algorand Address:', style: TextStyle(fontWeight: FontWeight.bold)),
+              SelectableText(_didAddress ?? 'Error retrieving address'),
+              const SizedBox(height: 8),
+              
+              if (_transactionId != null) ...[
+                const Text('Transaction ID:', style: TextStyle(fontWeight: FontWeight.bold)),
+                SelectableText(_transactionId!),
+                TextButton.icon(
+                  onPressed: () => _openAlgoExplorer(_transactionId!),
+                  icon: const Icon(Icons.open_in_new),
+                  label: const Text('View on AlgoExplorer'),
+                ),
+              ],
+              
+              // Afficher la phrase de passe si disponible
+              if (_didPassphrase != null) ...[
+                const Divider(),
+                const Text(
+                  'Important: Save your passphrase securely',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                SelectableText(
+                  _didPassphrase!,
+                  style: const TextStyle(fontSize: 14),
+                ),
+              ],
+            ],
+          ),
+        ),
+        actions: [
+          TextButton.icon(
+            onPressed: () {
+              Navigator.of(context).pop(); // Fermer le dialogue
+              Navigator.of(context).pop(); // Retourner à l'écran précédent
+            },
+            icon: const Icon(Icons.check_circle),
+            label: const Text('Done'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void showErrorDialog(String errorMessage) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Error', style: TextStyle(color: Colors.red)),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Registration failed: $errorMessage'),
+              const SizedBox(height: 16),
+              const Text(
+                'Please try again or contact support if the problem persists.',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
+}
+void showLoadingDialog(String message) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const CircularProgressIndicator(),
+            const SizedBox(height: 16),
+            Text(message),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+
 }

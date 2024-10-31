@@ -5,7 +5,7 @@ import 'screens/home_screen.dart';
 import 'package:algorand_hackathon/services/api_service.dart';
 
 void main() {
-  final apiService = ApiService();
+  final apiService = ApiService(baseUrl: 'http://192.168.1.86:8000');
 
   runApp(
     MultiProvider(
