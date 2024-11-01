@@ -19,6 +19,7 @@ from config import (
     DID_PREFIX
 )
 import asyncio
+import uuid
 
 # Configuration du logging
 logging.basicConfig(
@@ -63,11 +64,32 @@ def get_deployer_account() -> Dict[str, str]:
         logger.error(f"Failed to load deployer account: {e}")
         raise
 
+def generate_user_info_hash(user_info: Dict[str, Any] = None) -> str:
+    """Generate a SHA-256 hash from user information"""
+    try:
+        if user_info:
+            # Sort keys to ensure consistent hashing
+            info_string = json.dumps(user_info, sort_keys=True)
+        else:
+            info_string = str(uuid.uuid4())  # Generate random hash if no user info provided
+        
+        # Create SHA-256 hash
+        hash_object = hashlib.sha256(info_string.encode())
+        return hash_object.hexdigest()
+    except Exception as e:
+        logger.error(f"Failed to generate user info hash: {e}")
+        raise
+
 async def register_did(account_info: Dict[str, str]) -> Dict[str, Any]:
     """Register a DID for an account on TestNet, with fees paid by deployer"""
     try:
         client = get_algod_client()
         params = client.suggested_params()
+        
+        # Generate user info hash if user_info is provided
+        user_info_hash = None
+        if "user_info" in account_info:
+            user_info_hash = generate_user_info_hash(account_info["user_info"])
         
         # Adjust the validity window
         params.first = params.first
@@ -89,7 +111,8 @@ async def register_did(account_info: Dict[str, str]) -> Dict[str, Any]:
                 "controller": did,
                 "publicKeyBase58": account_info["address"]
             }],
-            "authentication": [f"{did}#key-1"]
+            "authentication": [f"{did}#key-1"],
+            "userInfoHash": account_info.get("user_info_hash")  # Add the generated hash
         }
         
         # Create note for transaction

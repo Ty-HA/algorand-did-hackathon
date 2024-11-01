@@ -22,7 +22,8 @@ class ApiService {
     final request = {
       "address": "",
       "private_key": "",
-      "mnemonic": ""
+      "mnemonic": "",
+      "user_info_hash": "",
     };
 
     final response = await http.post(
