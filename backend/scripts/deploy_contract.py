@@ -20,21 +20,12 @@ def ensure_directory_exists(file_path):
 
 def compile_program(client, source_code):
     """Compile TEAL source code to binary"""
-    compile_response = client.compile(source_code)
-    return base64.b64decode(compile_response['result'])
-
-def wait_for_funding(client, address):
-    """Wait for account to be funded"""
-    print(f"\nPlease fund the account {address} using the Algorand TestNet Dispenser:")
-    print("https://bank.testnet.algorand.network/")
-    print("\nWaiting for funding...")
-    
-    while True:
-        account_info = client.account_info(address)
-        if account_info.get("amount", 0) > 0:
-            print(f"Account funded successfully! Balance: {account_info['amount']} microAlgos")
-            return True
-        time.sleep(5)  # Check every 5 seconds
+    try:
+        compile_response = client.compile(source_code)
+        return base64.b64decode(compile_response['result'])
+    except Exception as e:
+        print(f"Compilation error: {e}")
+        raise
 
 def deploy_contract():
     try:
@@ -47,11 +38,20 @@ def deploy_contract():
         print(f"Save this private key: {private_key}")
         
         # Wait for account funding
-        if not wait_for_funding(client, address):
-            print("Failed to fund account")
-            return None
+        print(f"\nPlease fund the account {address} using the Algorand TestNet Dispenser:")
+        print("https://bank.testnet.algorand.network/")
+        print("\nWaiting for funding...")
+        
+        while True:
+            account_info = client.account_info(address)
+            if account_info.get("amount", 0) > 0:
+                print(f"Account funded successfully! Balance: {account_info['amount']} microAlgos")
+                break
+            time.sleep(5)
 
-        # Read the TEAL files
+        # Read and compile the TEAL files
+        print("\nCompiling TEAL programs...")
+        
         with open("contracts/approval.teal", "r") as f:
             approval_source = f.read()
 
@@ -59,7 +59,6 @@ def deploy_contract():
             clear_source = f.read()
 
         # Compile the programs
-        print("\nCompiling TEAL programs...")
         approval_program = compile_program(client, approval_source)
         clear_program = compile_program(client, clear_source)
 
@@ -75,7 +74,8 @@ def deploy_contract():
             approval_program=approval_program,
             clear_program=clear_program,
             global_schema=transaction.StateSchema(num_uints=1, num_byte_slices=1),
-            local_schema=transaction.StateSchema(num_uints=0, num_byte_slices=0)
+            local_schema=transaction.StateSchema(num_uints=0, num_byte_slices=0),
+            extra_pages=1  # Add extra pages for larger programs
         )
 
         # Sign transaction

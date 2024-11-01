@@ -10,7 +10,7 @@ INDEXER_TOKEN = ""
 EXPLORER_URL = "https://testnet.algoexplorer.io/tx/"
 
 # Application Configuration
-APP_ID = 727615985  # Will be set after deployment
+APP_ID = 728246425  # Your deployed app ID
 
 # DID Configuration
 DID_METHOD = "algo"

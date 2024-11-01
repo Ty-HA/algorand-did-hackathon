@@ -1,4 +1,4 @@
-#pragma version 6
+#pragma version 8
 
 // Check transaction type
 txn TypeEnum
@@ -41,10 +41,17 @@ handle_noop:
     >
     bz reject  // If no arguments, reject
 
+    // Check operation type
     txn ApplicationArgs 0
+    dup
     byte "register"
     ==
     bnz handle_register
+
+    dup
+    byte "store"
+    ==
+    bnz handle_store
 
     // Default: reject if no matching operation
     b reject
@@ -58,6 +65,28 @@ handle_register:
     bz reject  // If not deployer, reject
 
     // Allow registration
+    int 1
+    return
+
+handle_store:
+    // Allow storage from deployer
+    byte "deployer"
+    app_global_get
+    txn Sender
+    ==
+    bz reject  // If not deployer, reject
+
+    // Check if we have box name and value
+    txn NumAppArgs
+    int 3
+    ==
+    bz reject
+
+    // Store in box
+    txn ApplicationArgs 1  // box name
+    txn ApplicationArgs 2  // box value
+    box_put
+    
     int 1
     return
 
