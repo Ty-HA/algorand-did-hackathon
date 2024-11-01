@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:algorand_hackathon/services/api_service.dart';
-import 'home_screen.dart';
+import 'auth_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,15 +14,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _navigateToHomeScreen();
+    _navigateToAuthScreen();
   }
 
-  void _navigateToHomeScreen() {
+  void _navigateToAuthScreen() {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(apiService: Provider.of<ApiService>(context, listen: false)),
+          builder: (context) => AuthScreen(
+            apiService: Provider.of<ApiService>(context, listen: false),
+          ),
         ),
       );
     });

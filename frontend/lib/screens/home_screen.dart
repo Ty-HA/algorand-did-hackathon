@@ -24,7 +24,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  final String _didAddress = 'did:algo:0x1234...5678';
+  final String _didAddress =
+      'did:algo:J4PCC5KTBIEREW7EVNU6I6FQMRQFM7B57G624ETVT2LXD3RRZFQEVK53HQ';
   final double _identityScore = 75.0;
   final List<Map<String, dynamic>> _credentials = [
     {
@@ -68,10 +69,10 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildIdentityCard(),
-            const SizedBox(height: 20),
-            _buildActionButtons(),
-            const SizedBox(height: 20),
-            _buildCredentialsList(),
+            const SizedBox(height: 24),
+            _buildInfoCards(),
+            const SizedBox(height: 24),
+            _buildDidInfoSection(),
           ],
         ),
       ),
@@ -94,21 +95,23 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 16),
             Text(
-              'DID Address',
+              'My DID Address',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[600],
               ),
             ),
             const SizedBox(height: 4),
-            Text(
-              _didAddress,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+            Center(
+              child: Text(
+                _didAddress,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             _buildIdentityScore(),
           ],
         ),
@@ -126,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 12),
         Stack(
           alignment: Alignment.center,
           children: [
@@ -134,14 +137,15 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 100,
               width: 100,
               child: CircularProgressIndicator(
-                value: _identityScore / 100,
+                value: 0.25, // Changed to 25%
                 backgroundColor: Colors.grey[300],
                 strokeWidth: 10,
+                color: Colors.orange, // Changed color to reflect lower score
               ),
             ),
-            Text(
-              '${_identityScore.toInt()}%',
-              style: const TextStyle(
+            const Text(
+              '25%', // Changed to 25%
+              style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -149,6 +153,162 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildInfoCards() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'DID Information',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 16),
+        GridView.count(
+          crossAxisCount: 2,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          mainAxisSpacing: 16,
+          crossAxisSpacing: 16,
+          childAspectRatio: 1.5,
+          children: [
+            _buildInfoCard(
+              title: 'KYC Status',
+              value: 'Initial',  // Changed from 'Pending'
+              icon: Icons.verified_user,
+              color: Colors.orange,
+            ),
+            _buildInfoCard(
+              title: 'Network',
+              value: 'Algorand Testnet',
+              icon: Icons.network_check,
+              color: Colors.blue,
+            ),
+            _buildInfoCard(
+              title: 'Wallet',
+              value: 'Pera Wallet',  // Changed from 'Created On'
+              icon: Icons.account_balance_wallet,
+              color: Colors.green,
+            ),
+            _buildInfoCard(
+              title: 'Credentials',
+              value: '0 Verified',  // Changed from 'Personal'
+              icon: Icons.badge,
+              color: Colors.purple,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildInfoCard({
+    required String title,
+    required String value,
+    required IconData icon,
+    required Color color,
+  }) {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: color, size: 28),
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              value,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDidInfoSection() {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.info_outline, color: Colors.blue),
+                SizedBox(width: 8),
+                Text(
+                  'About Your DID',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            _buildInfoRow(
+              title: 'Identity Status',
+              content: 'Basic DID created. KYC verification needed to access full features.',
+            ),
+            _buildInfoRow(
+              title: 'Available Actions',
+              content: 'Complete KYC verification to increase your trust score and access more features.',
+            ),
+            _buildInfoRow(
+              title: 'Benefits',
+              content: 'After verification: Create and manage verifiable credentials, participate in the trusted network.',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  
+  Widget _buildInfoRow({required String title, required String content}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            content,
+            style: const TextStyle(
+              fontSize: 14,
+              color: Colors.black54,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -233,15 +393,18 @@ class _HomeScreenState extends State<HomeScreen> {
         'didDocument': {
           '@context': ['https://www.w3.org/ns/did/v1'],
           'id': _didAddress,
-          'verificationMethod': [{
-            'id': '$_didAddress#key-1',
-            'type': 'Ed25519VerificationKey2018',
-            'controller': _didAddress,
-            'publicKeyBase58': _didAddress.replaceAll('did:algo:', '')
-          }],
+          'verificationMethod': [
+            {
+              'id': '$_didAddress#key-1',
+              'type': 'Ed25519VerificationKey2018',
+              'controller': _didAddress,
+              'publicKeyBase58': _didAddress.replaceAll('did:algo:', '')
+            }
+          ],
           'authentication': ['$_didAddress#key-1']
         },
-        'transaction_id': 'DJ7PFIKRVZSZQYGAEDIORY2M4DLE3O7JHBWYT4SPM7QO445BTSPQ',
+        'transaction_id':
+            'DJ7PFIKRVZSZQYGAEDIORY2M4DLE3O7JHBWYT4SPM7QO445BTSPQ',
         'timestamp': DateTime.now().toIso8601String(),
       };
 
@@ -330,7 +493,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     } catch (e) {
       if (!mounted) return;
-      
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -346,7 +509,6 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
   }
-
 
   void _navigateToProfile() {
     Navigator.push(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'home_screen.dart';
 
 class VerificationScreen extends StatefulWidget {
   final ApiService apiService;
@@ -427,7 +428,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
     }
   }
 
-  void showSuccessDialog() {
+void showSuccessDialog() {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -467,7 +468,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   ),
                 ],
 
-                // Afficher la phrase de passe si disponible
                 if (_didPassphrase != null) ...[
                   const Divider(),
                   const Text(
@@ -491,7 +491,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
             TextButton.icon(
               onPressed: () {
                 Navigator.of(context).pop(); // Fermer le dialogue
-                Navigator.of(context).pop(); // Retourner à l'écran précédent
+                // Remplacer toute la pile de navigation avec HomeScreen
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(
+                      apiService: widget.apiService,
+                    ),
+                  ),
+                  (route) => false, // Cela supprime toutes les routes précédentes
+                );
               },
               icon: const Icon(Icons.check_circle),
               label: const Text('Done'),

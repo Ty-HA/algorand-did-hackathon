@@ -1,85 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:algorand_hackathon/services/api_service.dart'; 
+import 'package:algorand_hackathon/services/api_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CredentialsScreen extends StatefulWidget {
   final ApiService apiService;
 
-  const CredentialsScreen({Key? key, required this.apiService}) : super(key: key);
+  const CredentialsScreen({Key? key, required this.apiService})
+      : super(key: key);
 
   @override
   State<CredentialsScreen> createState() => _CredentialsScreenState();
 }
 
 class _CredentialsScreenState extends State<CredentialsScreen> {
-  // Simuler des données de credentials plus détaillées
+  String _selectedFilter = 'All';
+
   final List<Map<String, dynamic>> _credentials = [
     {
-      'title': 'Education Certificate',
-      'issuer': 'Local School',
-      'date': '2024-03-15',
+      'title': 'University - Bachelor\'s Degree',
+      'issuer':
+          'did:algo:ISSUER7G624ETVT2LXD3RRZFQEVK53HQKTBIEREW7EVNU6I6FQMRQFM7B5',
+      'date': '2024-11-01',
       'verified': true,
       'type': 'education',
       'details': 'Bachelor of Computer Science',
-      'validUntil': '2029-03-15',
       'score': 95,
     },
-    {
-      'title': 'Identity Verification',
-      'issuer': 'NGO Partner',
-      'date': '2024-03-10',
-      'verified': true,
-      'type': 'identity',
-      'details': 'Government ID Verification',
-      'validUntil': '2029-03-10',
-      'score': 100,
-    },
-    {
-      'title': 'Professional Certificate',
-      'issuer': 'Tech Company',
-      'date': '2024-02-20',
-      'verified': true,
-      'type': 'professional',
-      'details': 'Blockchain Developer Certification',
-      'validUntil': '2026-02-20',
-      'score': 88,
-    }
   ];
 
-  String _selectedFilter = 'All';
-
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: const Text('My Credentials'),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.filter_list),
-          onPressed: _showFilterOptions,
-        ),
-      ],
-    ),
-    body: Column(
-      children: [
-        _buildStatsCard(),
-        const SizedBox(height: 16),
-        Expanded(
-          child: _buildCredentialsList(),
-        ),
-      ],
-    ),
-    floatingActionButton: FloatingActionButton.extended(
-      onPressed: _addNewCredential,
-      label: const Text('Add Credential'),
-      icon: const Icon(Icons.add),
-    ),
-  );
-}
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Credentials'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.filter_list),
+            onPressed: _showFilterOptions,
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          _buildStatsCard(),
+          const SizedBox(height: 16),
+          Expanded(
+            child: _buildCredentialsList(),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _addNewCredential,
+        label: const Text('Add Credential'),
+        icon: const Icon(Icons.add),
+      ),
+    );
+  }
 
   Widget _buildStatsCard() {
-    int totalCredentials = _credentials.length;
-    int verifiedCredentials = _credentials.where((c) => c['verified']).length;
-    
     return Card(
       margin: const EdgeInsets.all(16),
       child: Padding(
@@ -87,9 +65,9 @@ Widget build(BuildContext context) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildStatItem('Total', totalCredentials, Icons.badge),
-            _buildStatItem('Verified', verifiedCredentials, Icons.verified),
-            _buildStatItem('Active', totalCredentials, Icons.timer),
+            _buildStatItem('Total', 1, Icons.badge),
+            _buildStatItem('Verified', 1, Icons.verified),
+            _buildStatItem('Active', 1, Icons.timer),
           ],
         ),
       ),
@@ -132,27 +110,6 @@ Widget build(BuildContext context) {
   }
 
   Widget _buildCredentialCard(Map<String, dynamic> credential) {
-    Color typeColor;
-    IconData typeIcon;
-
-    switch (credential['type']) {
-      case 'education':
-        typeColor = Colors.blue;
-        typeIcon = Icons.school;
-        break;
-      case 'professional':
-        typeColor = Colors.green;
-        typeIcon = Icons.business;
-        break;
-      case 'identity':
-        typeColor = Colors.purple;
-        typeIcon = Icons.badge;
-        break;
-      default:
-        typeColor = Colors.grey;
-        typeIcon = Icons.document_scanner;
-    }
-
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
       child: InkWell(
@@ -160,18 +117,16 @@ Widget build(BuildContext context) {
         child: Column(
           children: [
             ListTile(
-              leading: CircleAvatar(
-                backgroundColor: typeColor,
-                child: Icon(typeIcon, color: Colors.white),
+              leading: const CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Icon(Icons.school, color: Colors.white),
               ),
               title: Text(
                 credential['title'],
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              subtitle: Text('Issued by: ${credential['issuer']}'),
-              trailing: credential['verified']
-                  ? const Icon(Icons.verified, color: Colors.green)
-                  : const Icon(Icons.pending, color: Colors.orange),
+              subtitle: Text('Issuer: ${credential['issuer']}'),
+              trailing: const Icon(Icons.verified, color: Colors.green),
             ),
             Padding(
               padding: const EdgeInsets.all(16),
@@ -179,7 +134,6 @@ Widget build(BuildContext context) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Issued: ${credential['date']}'),
-                  Text('Valid until: ${credential['validUntil']}'),
                 ],
               ),
             ),
@@ -187,7 +141,7 @@ Widget build(BuildContext context) {
               LinearProgressIndicator(
                 value: credential['score'] / 100,
                 backgroundColor: Colors.grey[200],
-                valueColor: AlwaysStoppedAnimation<Color>(typeColor),
+                valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
               ),
           ],
         ),
@@ -215,13 +169,21 @@ Widget build(BuildContext context) {
               const SizedBox(height: 20),
               _buildDetailRow('Issuer', credential['issuer']),
               _buildDetailRow('Date', credential['date']),
-              _buildDetailRow('Valid Until', credential['validUntil']),
               _buildDetailRow('Details', credential['details']),
               _buildDetailRow('Score', '${credential['score']}%'),
+              const SizedBox(height: 8),
+              const Divider(),
+              ListTile(
+                leading: const Icon(Icons.link),
+                title: const Text('View on Pera Explorer'),
+                subtitle: const Text('Transaction Details'),
+                trailing: const Icon(Icons.open_in_new),
+                onTap: () => _openTransaction(
+                    '232C55242AQRRNFVE6QVBXQPGUZYVL5BMY6PWKKBYSBD22Z3U6BA'),
+              ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () {
-                  // Ajouter la logique de partage ici
                   Navigator.pop(context);
                 },
                 icon: const Icon(Icons.share),
@@ -233,6 +195,23 @@ Widget build(BuildContext context) {
       },
     );
   }
+
+  void _openTransaction(String txId) async {
+    final url = 'https://testnet.explorer.perawallet.app/tx/$txId';
+    try {
+      await launchUrl(Uri.parse(url));
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Could not open Pera Explorer'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
 
   Widget _buildDetailRow(String label, String value) {
     return Padding(
@@ -269,8 +248,6 @@ Widget build(BuildContext context) {
             children: [
               _buildFilterOption('All'),
               _buildFilterOption('Education'),
-              _buildFilterOption('Professional'),
-              _buildFilterOption('Identity'),
             ],
           ),
         );
@@ -297,15 +274,9 @@ Widget build(BuildContext context) {
   void _addNewCredential() {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-            top: 20,
-            left: 20,
-            right: 20,
-          ),
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -319,36 +290,16 @@ Widget build(BuildContext context) {
               const SizedBox(height: 20),
               ListTile(
                 leading: const Icon(Icons.school),
-                title: const Text('Education Credential'),
+                title: const Text('University - Bachelor\'s Degree'),
                 onTap: () {
                   Navigator.pop(context);
-                  debugPrint('Adding education credential...');
+                  debugPrint('Adding university credential...');
                 },
               ),
-              ListTile(
-                leading: const Icon(Icons.badge),
-                title: const Text('Identity Verification'),
-                onTap: () {
-                  Navigator.pop(context);
-                  debugPrint('Starting identity verification...');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.business),
-                title: const Text('Professional Credential'),
-                onTap: () {
-                  Navigator.pop(context);
-                  debugPrint('Adding professional credential...');
-                },
-              ),
-              const SizedBox(height: 20),
             ],
           ),
         );
       },
     );
   }
-
-   
 }
-

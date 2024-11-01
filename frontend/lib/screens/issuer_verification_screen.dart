@@ -4,21 +4,27 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 import '../services/api_service.dart';
 
+// Écran principal du scanner
 class IssuerVerificationScreen extends StatefulWidget {
   final ApiService apiService;
   const IssuerVerificationScreen({
     Key? key,
-    required this.apiService, // Rendu requis
+    required this.apiService,
   }) : super(key: key);
 
- @override
+  @override
   State<IssuerVerificationScreen> createState() => _IssuerVerificationScreenState();
 }
 
 class _IssuerVerificationScreenState extends State<IssuerVerificationScreen> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   MobileScannerController cameraController = MobileScannerController();
   bool isVerifying = false;
+
+  @override
+  void dispose() {
+    cameraController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,41 +68,39 @@ class _IssuerVerificationScreenState extends State<IssuerVerificationScreen> {
         children: [
           Expanded(
             flex: 5,
-            child: _buildQRView(context),
+            child: MobileScanner(
+              controller: cameraController,
+              onDetect: (capture) {
+                final List<Barcode> barcodes = capture.barcodes;
+                for (final barcode in barcodes) {
+                  if (barcode.rawValue != null) {
+                    _processQRCode(barcode.rawValue!);
+                  }
+                }
+              },
+            ),
           ),
           Expanded(
-            child: _buildResult(),
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              alignment: Alignment.center,
+              child: isVerifying
+                  ? const CircularProgressIndicator()
+                  : const Text(
+                      'Scan DID QR Code',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildQRView(BuildContext context) {
-    return MobileScanner(
-      controller: cameraController,
-      onDetect: (capture) {
-        final List<Barcode> barcodes = capture.barcodes;
-        for (final barcode in barcodes) {
-          if (barcode.rawValue != null) {
-            _verifyAndShowForm(barcode.rawValue!);
-          }
-        }
-      },
-    );
-  }
-
-  Widget _buildResult() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      alignment: Alignment.center,
-      child: isVerifying
-          ? const CircularProgressIndicator()
-          : const Text('Scan DID QR Code'),
-    );
-  }
-
-  void _verifyAndShowForm(String qrData) async {
+  void _processQRCode(String qrData) async {
     if (isVerifying) return;
 
     setState(() {
@@ -104,42 +108,45 @@ class _IssuerVerificationScreenState extends State<IssuerVerificationScreen> {
     });
 
     try {
-      cameraController.stop();
+      debugPrint('QR Code scanned: $qrData');
+      await cameraController.stop();
+      
       final data = json.decode(qrData);
       
-      // Passez l'apiService depuis le widget parent
       if (mounted) {
-        Navigator.pushReplacement(
+        await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => IssuerCredentialScreen(
               did: data['did'],
               didDocument: data['didDocument'],
-              apiService: widget.apiService, // Utilisez l'apiService du widget
+              apiService: widget.apiService,
             ),
           ),
         );
       }
     } catch (e) {
+      debugPrint('Error processing QR code: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
+          SnackBar(
+            content: Text('Error: $e'),
+            backgroundColor: Colors.red,
+          ),
         );
+        await cameraController.start();
       }
     } finally {
-      setState(() {
-        isVerifying = false;
-      });
+      if (mounted) {
+        setState(() {
+          isVerifying = false;
+        });
+      }
     }
-  }
-
-  @override
-  void dispose() {
-    cameraController.dispose();
-    super.dispose();
   }
 }
 
+// Écran du formulaire de credentials
 class IssuerCredentialScreen extends StatefulWidget {
   final String did;
   final Map<String, dynamic> didDocument;
@@ -160,14 +167,24 @@ class _IssuerCredentialScreenState extends State<IssuerCredentialScreen> {
   final _formKey = GlobalKey<FormState>();
   DateTime? startDate;
   DateTime? endDate;
-  String? degree;
-  String? institution;
+  String? category;
+  String? firstName;
+  String? lastName;
+  final String issuerDid = 'did:algo:ISSUER7G624ETVT2LXD3RRZFQEVK53HQKTBIEREW7EVNU6I6FQMRQFM7B5';
+
+  final List<String> categories = [
+    'University - Bachelor\'s Degree',
+    'Professional Certification',
+    'Employment Verification',
+    'Income Verification',
+    'Health Screening Certificate',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Issue Education Credential'),
+        title: const Text('Issue Credential'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -176,78 +193,150 @@ class _IssuerCredentialScreenState extends State<IssuerCredentialScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'DID Information',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text('DID: ${widget.did}'),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Degree/Certificate Name',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the degree name';
-                  }
-                  return null;
-                },
-                onSaved: (value) => degree = value,
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Institution',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the institution name';
-                  }
-                  return null;
-                },
-                onSaved: (value) => institution = value,
-              ),
-              const SizedBox(height: 16),
-              _buildDatePicker(
-                'Start Date',
-                startDate,
-                (date) => setState(() => startDate = date),
-              ),
-              const SizedBox(height: 16),
-              _buildDatePicker(
-                'End Date',
-                endDate,
-                (date) => setState(() => endDate = date),
-              ),
+              _buildDidInfoCard(),
               const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: _submitCredential,
-                  child: const Text('Issue Credential'),
-                ),
-              ),
+              _buildCategoryDropdown(),
+              const SizedBox(height: 24),
+              _buildPeriodSection(),
+              const SizedBox(height: 32),
+              _buildSubmitButton(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildDidInfoCard() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'DID Information',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              initialValue: 'John',
+              decoration: const InputDecoration(
+                labelText: 'First Name',
+                border: OutlineInputBorder(),
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter first name';
+                }
+                return null;
+              },
+              onSaved: (value) => firstName = value,
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              initialValue: 'Doe',
+              decoration: const InputDecoration(
+                labelText: 'Last Name',
+                border: OutlineInputBorder(),
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter last name';
+                }
+                return null;
+              },
+              onSaved: (value) => lastName = value,
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'User DID:',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SelectableText(
+              widget.did,
+              style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Issuer DID:',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SelectableText(
+              issuerDid,
+              style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCategoryDropdown() {
+    return DropdownButtonFormField<String>(
+      decoration: const InputDecoration(
+        labelText: 'Category',
+        border: OutlineInputBorder(),
+      ),
+      value: category,
+      items: categories.map((String category) {
+        return DropdownMenuItem(
+          value: category,
+          child: Text(
+            category,
+            style: const TextStyle(fontSize: 14),
+          ),
+        );
+      }).toList(),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please select a category';
+        }
+        return null;
+      },
+      onChanged: (String? newValue) {
+        setState(() {
+          category = newValue;
+        });
+      },
+    );
+  }
+
+  Widget _buildPeriodSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Period',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Expanded(
+              child: _buildDatePicker(
+                'Start Date',
+                startDate,
+                (date) => setState(() => startDate = date),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: _buildDatePicker(
+                'End Date',
+                endDate,
+                (date) => setState(() => endDate = date),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -282,6 +371,24 @@ class _IssuerCredentialScreenState extends State<IssuerCredentialScreen> {
     );
   }
 
+  Widget _buildSubmitButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
+        onPressed: _submitCredential,
+        child: const Text(
+          'Issue Credential',
+          style: TextStyle(fontSize: 16),
+        ),
+      ),
+    );
+  }
+
   void _submitCredential() async {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState?.save();
@@ -293,30 +400,35 @@ class _IssuerCredentialScreenState extends State<IssuerCredentialScreen> {
         return;
       }
 
-      // Créer le credential
-      final credential = {
-        'type': 'EducationCredential',
-        'issuer': 'School District',
-        'issuanceDate': DateTime.now().toIso8601String(),
-        'credentialSubject': {
-          'id': widget.did,
-          'degree': degree,
-          'institution': institution,
-          'startDate': startDate!.toIso8601String(),
-          'endDate': endDate!.toIso8601String(),
-        },
-      };
-
       try {
-        // Ici, vous devriez appeler votre API pour mettre à jour le DID document
-        // et ajouter le credential
+        final credential = {
+          'type': category,
+          'issuer': issuerDid,
+          'issuanceDate': DateTime.now().toIso8601String(),
+          'credentialSubject': {
+            'id': widget.did,
+            'firstName': firstName,
+            'lastName': lastName,
+            'startDate': startDate!.toIso8601String(),
+            'endDate': endDate!.toIso8601String(),
+          },
+        };
 
-        // Pour le moment, affichons juste un succès
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
             title: const Text('Success'),
-            content: const Text('Credential issued successfully!'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Credential issued successfully!'),
+                const SizedBox(height: 16),
+                Text('Category: $category'),
+                Text('Issued to: $firstName $lastName'),
+                Text('Period: ${DateFormat('yyyy-MM-dd').format(startDate!)} to ${DateFormat('yyyy-MM-dd').format(endDate!)}'),
+              ],
+            ),
             actions: [
               TextButton(
                 onPressed: () {

@@ -12,8 +12,9 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final Map<String, dynamic> _userProfile = {
-    // 'name': 'John Doe',
-    'did': 'did:algo:56DN7F4IXFGQOOKH3N4Q7M4I4E7PPXYKKLD5S4RYAWAKYYLRWEA5BZEL2U',
+    'First Name': 'John',
+    'Last Name': 'Doe',
+    'did': 'did:algo:J4PCC5KTBIEREW7EVNU6I6FQMRQFM7B57G624ETVT2LXD3RRZFQEVK53HQ',
     // 'email': 'john.doe@example.com',
     // 'phone': '+1234567890',
     'location': 'Paris, France',
@@ -162,6 +163,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               editable: true,
             ),
             */
+            _buildDetailRow(
+              'First Name',
+              _userProfile['First Name'],
+              Icons.person,
+              editable: true,
+            ),
+            _buildDetailRow(
+              'Last Name',
+              _userProfile['Last Name'],
+              Icons.person,
+              editable: true,
+            ),
             _buildDetailRow(
               'Location',
               _userProfile['location'],

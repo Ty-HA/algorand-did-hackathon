@@ -7,7 +7,7 @@ import 'package:algorand_hackathon/services/api_service.dart';
 
 void main() {
   //final apiService = ApiService(baseUrl: 'http://192.168.1.86:8000');
-  final apiService = ApiService(baseUrl: 'http://10.19.192.124:8000');
+  final apiService = ApiService(baseUrl: 'http://192.168.1.23:8000');
   
 
   runApp(
