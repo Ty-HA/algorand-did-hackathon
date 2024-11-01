@@ -89,7 +89,8 @@ async def register_did(account_info: Dict[str, str]) -> Dict[str, Any]:
                 "controller": did,
                 "publicKeyBase58": account_info["address"]
             }],
-            "authentication": [f"{did}#key-1"]
+            "authentication": [f"{did}#key-1"],
+            "userInfoHash": account_info.get("user_info_hash")  # Include user info hash if provided
         }
         
         # Create note for transaction
