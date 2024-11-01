@@ -12,12 +12,12 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final Map<String, dynamic> _userProfile = {
-    'name': 'John Doe',
-    'did': 'did:algo:0x1234...5678',
-    'email': 'john.doe@example.com',
-    'phone': '+1234567890',
+    // 'name': 'John Doe',
+    'did': 'did:algo:56DN7F4IXFGQOOKH3N4Q7M4I4E7PPXYKKLD5S4RYAWAKYYLRWEA5BZEL2U',
+    // 'email': 'john.doe@example.com',
+    // 'phone': '+1234567890',
     'location': 'Paris, France',
-    'joinDate': '2024-03-15',
+    'joinDate': '2024-11-01',
     'score': 75,
     'verificationStatus': 'Verified',
     'activeCredentials': 3,
@@ -92,6 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
             ],
           ),
+          /*
           const SizedBox(height: 16),
           _isEditing
               ? TextFormField(
@@ -116,6 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                */
           const SizedBox(height: 8),
           Text(
             _userProfile['did'],
@@ -145,6 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             const SizedBox(height: 16),
+            /*
             _buildDetailRow(
               'Email',
               _userProfile['email'],
@@ -157,12 +160,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Icons.phone,
               editable: true,
             ),
+            */
             _buildDetailRow(
               'Location',
               _userProfile['location'],
               Icons.location_on,
               editable: true,
             ),
+            
             _buildDetailRow(
               'Member Since',
               _userProfile['joinDate'],
@@ -347,18 +352,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (context) => Container(
         padding: const EdgeInsets.all(16),
-        child: Column(
+        child: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const ListTile(
+            ListTile(
               leading: Icon(Icons.qr_code),
               title: Text('Export as QR Code'),
             ),
-            const ListTile(
+            ListTile(
               leading: Icon(Icons.file_download),
               title: Text('Download Backup File'),
             ),
-            const ListTile(
+            ListTile(
               leading: Icon(Icons.cloud_upload),
               title: Text('Cloud Backup'),
             ),
