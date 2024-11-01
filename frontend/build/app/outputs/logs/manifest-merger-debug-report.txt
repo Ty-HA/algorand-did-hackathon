@@ -8,10 +8,20 @@ MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackatho
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-12:19
+MERGED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:23:5-34:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:8:5-24:19
+MERGED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:8:5-24:19
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\bicht\.gradle\caches\transforms-3\3cf64d7fdf85fb647b3a1a2b1803be26\transformed\jetified-play-services-tasks-18.0.2\AndroidManifest.xml:5:5-20
@@ -30,8 +40,14 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\bicht\.gradle\cach
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\bicht\.gradle\caches\transforms-3\53f114d110e356c36b5f50ab357f361f\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bicht\.gradle\caches\transforms-3\ee01e2b20f52029a052c42ac95f9e8b2\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bicht\.gradle\caches\transforms-3\ee01e2b20f52029a052c42ac95f9e8b2\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:25:5-39:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:25:5-39:19
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\bicht\.gradle\caches\transforms-3\8a8d10134152fb1fea5f0f9ec11dd13b\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:7:5-11:19
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\bicht\.gradle\caches\transforms-3\8a8d10134152fb1fea5f0f9ec11dd13b\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:7:5-11:19
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\bicht\.gradle\caches\transforms-3\307464a006f25f981b355f851ed967d7\transformed\jetified-image-1.0.0-beta1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\bicht\.gradle\caches\transforms-3\307464a006f25f981b355f851ed967d7\transformed\jetified-image-1.0.0-beta1\AndroidManifest.xml:7:5-20
 	android:extractNativeLibs
 		INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
 	android:appComponentFactory
@@ -52,11 +68,21 @@ MERGED from [:google_maps_flutter_android] D:\PROJECTS\flutter_projects\algorand
 MERGED from [:image_picker_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-34:12
 MERGED from [:flutter_plugin_android_lifecycle] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:mobile_scanner] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\mobile_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-13:12
 MERGED from [:shared_preferences_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-14:12
+MERGED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.camera:camera-lifecycle:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\7696293ee79ffad470b7e4fa2ec075e5\transformed\jetified-camera-lifecycle-1.3.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:17:1-44:12
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.mlkit:barcode-scanning:17.2.0] C:\Users\bicht\.gradle\caches\transforms-3\7e4fdba41e532c40918313fa970d270a\transformed\jetified-barcode-scanning-17.2.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.mlkit:barcode-scanning-common:17.0.0] C:\Users\bicht\.gradle\caches\transforms-3\4c474810d39a414c7ca573d630fdfd40\transformed\jetified-barcode-scanning-common-17.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.mlkit:vision-interfaces:16.2.0] C:\Users\bicht\.gradle\caches\transforms-3\07e5bc3a57035dcc75de820769082d13\transformed\jetified-vision-interfaces-16.2.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\bicht\.gradle\caches\transforms-3\3cf64d7fdf85fb647b3a1a2b1803be26\transformed\jetified-play-services-tasks-18.0.2\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:16:1-26:12
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\bicht\.gradle\caches\transforms-3\a49cd171355a6a39687e69f028c8bcbc\transformed\fragment-1.7.1\AndroidManifest.xml:2:1-7:12
@@ -86,9 +112,15 @@ MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\bicht\.gradle\caches\trans
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\de4e1f54747892e0930cd2e3ecf5513e\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bicht\.gradle\caches\transforms-3\ee01e2b20f52029a052c42ac95f9e8b2\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\bicht\.gradle\caches\transforms-3\08235bf0a8760a790ea7b8b4eab82236\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:15:1-38:12
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:15:1-41:12
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] C:\Users\bicht\.gradle\caches\transforms-3\3105cef1fc96bd55cbf9b45bd8902737\transformed\jetified-transport-api-2.2.1\AndroidManifest.xml:15:1-22:12
+MERGED from [com.google.firebase:firebase-components:16.1.0] C:\Users\bicht\.gradle\caches\transforms-3\f00e8fd2fa29e49af1d4ae65bded8c78\transformed\jetified-firebase-components-16.1.0\AndroidManifest.xml:15:1-23:12
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] C:\Users\bicht\.gradle\caches\transforms-3\2101b65f223f1b0fd283487fa5a1dbe1\transformed\jetified-firebase-encoders-json-17.1.0\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\6dde453803d512b3f23cc981e264e9e0\transformed\jetified-core-1.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\bicht\.gradle\caches\transforms-3\8a8d10134152fb1fea5f0f9ec11dd13b\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\bicht\.gradle\caches\transforms-3\6707c561045b071954f9f1d8398a2530\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\bicht\.gradle\caches\transforms-3\307464a006f25f981b355f851ed967d7\transformed\jetified-image-1.0.0-beta1\AndroidManifest.xml:2:1-9:12
 	package
 		INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
 	android:versionName
@@ -103,6 +135,8 @@ MERGED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app
 MERGED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:2:5-66
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:26:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:26:5-67
 	android:name
 		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:2:22-64
 uses-permission#android.permission.QUERY_ALL_PACKAGES
@@ -113,6 +147,10 @@ uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:4:5-78
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:22:5-79
 	android:name
 		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:4:22-76
 uses-permission#android.permission.ACCESS_FINE_LOCATION
@@ -124,7 +162,9 @@ ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\
 	android:name
 		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:6:22-78
 uses-permission#android.permission.CAMERA
-ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:7:5-64
+ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:7:5-65
+MERGED from [:mobile_scanner] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\mobile_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-65
+MERGED from [:mobile_scanner] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\mobile_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-65
 	android:name
 		ADDED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\main\AndroidManifest.xml:7:22-62
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
@@ -171,16 +211,36 @@ MERGED from [:flutter_plugin_android_lifecycle] D:\PROJECTS\flutter_projects\alg
 MERGED from [:flutter_plugin_android_lifecycle] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:mobile_scanner] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\mobile_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:mobile_scanner] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\mobile_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-lifecycle:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\7696293ee79ffad470b7e4fa2ec075e5\transformed\jetified-camera-lifecycle-1.3.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-lifecycle:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\7696293ee79ffad470b7e4fa2ec075e5\transformed\jetified-camera-lifecycle-1.3.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\bicht\.gradle\caches\transforms-3\864e7847b57e610250f69668f41cf2e8\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:barcode-scanning:17.2.0] C:\Users\bicht\.gradle\caches\transforms-3\7e4fdba41e532c40918313fa970d270a\transformed\jetified-barcode-scanning-17.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:barcode-scanning:17.2.0] C:\Users\bicht\.gradle\caches\transforms-3\7e4fdba41e532c40918313fa970d270a\transformed\jetified-barcode-scanning-17.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:barcode-scanning-common:17.0.0] C:\Users\bicht\.gradle\caches\transforms-3\4c474810d39a414c7ca573d630fdfd40\transformed\jetified-barcode-scanning-common-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:barcode-scanning-common:17.0.0] C:\Users\bicht\.gradle\caches\transforms-3\4c474810d39a414c7ca573d630fdfd40\transformed\jetified-barcode-scanning-common-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:6:5-44
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.mlkit:vision-interfaces:16.2.0] C:\Users\bicht\.gradle\caches\transforms-3\07e5bc3a57035dcc75de820769082d13\transformed\jetified-vision-interfaces-16.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:vision-interfaces:16.2.0] C:\Users\bicht\.gradle\caches\transforms-3\07e5bc3a57035dcc75de820769082d13\transformed\jetified-vision-interfaces-16.2.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\bicht\.gradle\caches\transforms-3\3cf64d7fdf85fb647b3a1a2b1803be26\transformed\jetified-play-services-tasks-18.0.2\AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\bicht\.gradle\caches\transforms-3\3cf64d7fdf85fb647b3a1a2b1803be26\transformed\jetified-play-services-tasks-18.0.2\AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\fdbb3cf6ca045f2cd53bc368c4b64c16\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:18:5-43
@@ -239,12 +299,24 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bi
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\bicht\.gradle\caches\transforms-3\ee01e2b20f52029a052c42ac95f9e8b2\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\bicht\.gradle\caches\transforms-3\08235bf0a8760a790ea7b8b4eab82236\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\bicht\.gradle\caches\transforms-3\08235bf0a8760a790ea7b8b4eab82236\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] C:\Users\bicht\.gradle\caches\transforms-3\3105cef1fc96bd55cbf9b45bd8902737\transformed\jetified-transport-api-2.2.1\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] C:\Users\bicht\.gradle\caches\transforms-3\3105cef1fc96bd55cbf9b45bd8902737\transformed\jetified-transport-api-2.2.1\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-components:16.1.0] C:\Users\bicht\.gradle\caches\transforms-3\f00e8fd2fa29e49af1d4ae65bded8c78\transformed\jetified-firebase-components-16.1.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.1.0] C:\Users\bicht\.gradle\caches\transforms-3\f00e8fd2fa29e49af1d4ae65bded8c78\transformed\jetified-firebase-components-16.1.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] C:\Users\bicht\.gradle\caches\transforms-3\2101b65f223f1b0fd283487fa5a1dbe1\transformed\jetified-firebase-encoders-json-17.1.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] C:\Users\bicht\.gradle\caches\transforms-3\2101b65f223f1b0fd283487fa5a1dbe1\transformed\jetified-firebase-encoders-json-17.1.0\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\6dde453803d512b3f23cc981e264e9e0\transformed\jetified-core-1.0.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\bicht\.gradle\caches\transforms-3\6dde453803d512b3f23cc981e264e9e0\transformed\jetified-core-1.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\bicht\.gradle\caches\transforms-3\8a8d10134152fb1fea5f0f9ec11dd13b\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\bicht\.gradle\caches\transforms-3\8a8d10134152fb1fea5f0f9ec11dd13b\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\bicht\.gradle\caches\transforms-3\6707c561045b071954f9f1d8398a2530\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\bicht\.gradle\caches\transforms-3\6707c561045b071954f9f1d8398a2530\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\bicht\.gradle\caches\transforms-3\307464a006f25f981b355f851ed967d7\transformed\jetified-image-1.0.0-beta1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\bicht\.gradle\caches\transforms-3\307464a006f25f981b355f851ed967d7\transformed\jetified-image-1.0.0-beta1\AndroidManifest.xml:5:5-44
 	android:targetSdkVersion
 		INJECTED from D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\android\app\src\debug\AndroidManifest.xml
 	android:minSdkVersion
@@ -297,6 +369,12 @@ ADDED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon
 		ADDED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-53
 	android:name
 		ADDED from [:geolocator_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-77
+uses-feature#android.hardware.camera
+ADDED from [:mobile_scanner] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\mobile_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-11:36
+	android:required
+		ADDED from [:mobile_scanner] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\mobile_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:11:9-33
+	android:name
+		ADDED from [:mobile_scanner] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\mobile_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-47
 activity#io.flutter.plugins.urllauncher.WebViewActivity
 ADDED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-11:74
 	android:exported
@@ -305,6 +383,24 @@ ADDED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackath
 		ADDED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-71
 	android:name
 		ADDED from [:url_launcher_android] D:\PROJECTS\flutter_projects\algorand_hackathon\frontend\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-74
+service#androidx.camera.core.impl.MetadataHolderService
+ADDED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:29:9-33:78
+MERGED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:24:9-33:19
+MERGED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:24:9-33:19
+	android:enabled
+		ADDED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:31:13-36
+	android:exported
+		ADDED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:32:13-37
+	tools:ignore
+		ADDED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:33:13-75
+	android:name
+		ADDED from [androidx.camera:camera-core:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\e188edaf9134f9f7429e744a1c7cbce0\transformed\jetified-camera-core-1.3.1\AndroidManifest.xml:30:13-75
+meta-data#androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER
+ADDED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:30:13-32:89
+	android:value
+		ADDED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:32:17-86
+	android:name
+		ADDED from [androidx.camera:camera-camera2:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\eac16b04f59ad1a4bfec4b9d0762d780\transformed\jetified-camera-camera2-1.3.1\AndroidManifest.xml:31:17-103
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
@@ -321,6 +417,48 @@ ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gr
 		ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:41:13-37
 	android:name
 		ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\bicht\.gradle\caches\transforms-3\8bbca67cc5a32c5ad0e6edc351921bed\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:40:13-50
+service#com.google.mlkit.common.internal.MlKitComponentDiscoveryService
+ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:15:9-23:19
+MERGED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:15:9-23:19
+	android:exported
+		ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:11:13-37
+	tools:targetApi
+		ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:19:13-32
+	android:directBootAware
+		ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:17:13-43
+	android:name
+		ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:10:13-91
+meta-data#com.google.firebase.components:com.google.mlkit.vision.barcode.internal.BarcodeRegistrar
+ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] C:\Users\bicht\.gradle\caches\transforms-3\7c442205c5ac32e4e70c1da788090778\transformed\jetified-play-services-mlkit-barcode-scanning-18.3.0\AndroidManifest.xml:13:17-120
+meta-data#com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar
+ADDED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.mlkit:vision-common:17.3.0] C:\Users\bicht\.gradle\caches\transforms-3\bb221b09e24dc57c611aaf3b8222c1a3\transformed\jetified-vision-common-17.3.0\AndroidManifest.xml:13:17-124
+provider#com.google.mlkit.common.internal.MlKitInitProvider
+ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:9:9-13:38
+	android:authorities
+		ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:11:13-69
+	android:exported
+		ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:12:13-37
+	android:initOrder
+		ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:13:13-35
+	android:name
+		ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:10:13-78
+meta-data#com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar
+ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:20:13-22:85
+	android:value
+		ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:22:17-82
+	android:name
+		ADDED from [com.google.mlkit:common:18.9.0] C:\Users\bicht\.gradle\caches\transforms-3\9807d0f7c0d197b076554d9416f53573\transformed\jetified-common-18.9.0\AndroidManifest.xml:21:17-120
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\bicht\.gradle\caches\transforms-3\8470c89ba64407e2dd527ce11792b982\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
 	android:exported
@@ -431,3 +569,31 @@ action#androidx.profileinstaller.action.BENCHMARK_OPERATION
 ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
 	android:name
 		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\bicht\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+service#com.google.android.datatransport.runtime.backends.TransportBackendDiscovery
+ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:36:9-38:40
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:36:9-38:40
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:30:13-103
+meta-data#backend:com.google.android.datatransport.cct.CctBackendFactory
+ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:32:13-34:39
+	android:value
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:34:17-36
+	android:name
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\bicht\.gradle\caches\transforms-3\9c8761b97dd2daea4255d9795b3b0a5b\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:33:17-94
+service#com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService
+ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:26:9-30:19
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:28:13-37
+	android:permission
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:29:13-69
+	android:name
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:27:13-117
+receiver#com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver
+ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:32:9-34:40
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:34:13-37
+	android:name
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\bicht\.gradle\caches\transforms-3\b4e64a3471a767b6ec14537f8f362b5b\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:33:13-132

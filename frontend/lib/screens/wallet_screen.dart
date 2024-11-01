@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});
@@ -71,10 +72,34 @@ class WalletScreen extends StatelessWidget {
                     onTap: () {},
                   ),
                   _buildActionButton(
-                    icon: Icons.qr_code_scanner,
-                    label: 'Receive',
-                    onTap: () {},
-                  ),
+  icon: Icons.qr_code_scanner,
+  label: 'Receive',
+  onTap: () {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => SizedBox(
+        height: MediaQuery.of(context).size.height * 0.7,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Scan QR Code'),
+          ),
+          body: MobileScanner(
+            onDetect: (capture) {
+              final List<Barcode> barcodes = capture.barcodes;
+              for (final barcode in barcodes) {
+                if (barcode.rawValue != null) {
+                  Navigator.pop(context);
+                  // _processPaymentQRCode(barcode.rawValue!);
+                }
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  },
+),
                   _buildActionButton(
                     icon: Icons.swap_horiz,
                     label: 'Swap',

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.algorand_hackathon.app-mergeDebugResources-31:/values-ro/values-ro.xml",
+            "outputFile": "com.example.algorand_hackathon.app-mergeDebugResources-34:/values-ro/values-ro.xml",
             "map": [
                 {
                     "source": "C:\\Users\\bicht\\.gradle\\caches\\transforms-3\\c666c258fca39b3353b46678a6b928ab\\transformed\\core-1.13.1\\res\\values-ro\\values-ro.xml",

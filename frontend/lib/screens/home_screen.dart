@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+// import 'package:shared_preferences.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'dart:convert';
 import 'verification_screen.dart';
 import 'credentials_screen.dart';
 import 'profile_screen.dart';
@@ -44,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         return CredentialsScreen(apiService: widget.apiService);
       case 2:
-        return const TTPScreen();
+        return TTPScreen(apiService: widget.apiService);
       case 3:
         return const WalletScreen();
       default:
@@ -221,28 +225,128 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _showQRCode() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Your DID QR Code'),
-        content: const Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.qr_code, size: 200),
-            SizedBox(height: 16),
-            Text('Scan this code to verify your identity'),
+  Future<void> _showQRCode() async {
+    try {
+      // Créer un mock des données DID pour le QR code
+      final mockProfileData = {
+        'did': _didAddress,
+        'didDocument': {
+          '@context': ['https://www.w3.org/ns/did/v1'],
+          'id': _didAddress,
+          'verificationMethod': [{
+            'id': '$_didAddress#key-1',
+            'type': 'Ed25519VerificationKey2018',
+            'controller': _didAddress,
+            'publicKeyBase58': _didAddress.replaceAll('did:algo:', '')
+          }],
+          'authentication': ['$_didAddress#key-1']
+        },
+        'transaction_id': 'DJ7PFIKRVZSZQYGAEDIORY2M4DLE3O7JHBWYT4SPM7QO445BTSPQ',
+        'timestamp': DateTime.now().toIso8601String(),
+      };
+
+      // Convertir en JSON string
+      final qrData = json.encode(mockProfileData);
+
+      if (!mounted) return;
+
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text(
+            'Your DID QR Code',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 300,
+                  height: 300,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: QrImageView(
+                    data: qrData,
+                    version: QrVersions.auto,
+                    size: 280,
+                    backgroundColor: Colors.white,
+                    errorCorrectionLevel: QrErrorCorrectLevel.H,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Scan this code to verify your identity',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'DID: $_didAddress',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton.icon(
+              icon: const Icon(Icons.copy),
+              label: const Text('Copy Data'),
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: qrData));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('QR data copied to clipboard'),
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
+              },
+            ),
+            TextButton.icon(
+              icon: const Icon(Icons.close),
+              label: const Text('Close'),
+              onPressed: () => Navigator.pop(context),
+            ),
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
-          ),
-        ],
-      ),
-    );
+      );
+    } catch (e) {
+      if (!mounted) return;
+      
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Error'),
+          content: Text(e.toString()),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
   }
+
 
   void _navigateToProfile() {
     Navigator.push(

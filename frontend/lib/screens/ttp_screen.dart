@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+// import 'package:mobile_scanner/mobile_scanner.dart';
+// import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:algorand_hackathon/services/api_service.dart';
+import 'issuer_verification_screen.dart';
+
 
 class NearbyTTPView extends StatefulWidget {
   const NearbyTTPView({super.key});
@@ -79,7 +84,8 @@ class _NearbyTTPViewState extends State<NearbyTTPView> {
     try {
       debugPrint('Attempting to get position...');
       final position = await Geolocator.getCurrentPosition();
-      debugPrint('Position obtained: ${position.latitude}, ${position.longitude}');
+      debugPrint(
+          'Position obtained: ${position.latitude}, ${position.longitude}');
       setState(() {
         _currentPosition = position;
         _isLoading = false;
@@ -99,8 +105,9 @@ class _NearbyTTPViewState extends State<NearbyTTPView> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('Building NearbyTTPView. Loading: $_isLoading, Position: $_currentPosition');
-    
+    debugPrint(
+        'Building NearbyTTPView. Loading: $_isLoading, Position: $_currentPosition');
+
     if (_isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -208,7 +215,12 @@ class _NearbyTTPViewState extends State<NearbyTTPView> {
 }
 
 class TTPScreen extends StatelessWidget {
-  const TTPScreen({super.key});
+  final ApiService apiService;
+
+   const TTPScreen({
+    super.key,
+    required this.apiService // Rendu requis
+  });
 
   final List<Map<String, dynamic>> _ttps = const [
     {
@@ -257,6 +269,21 @@ class TTPScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Trusted Partners'),
+           actions: [
+          Row(
+            children: [
+              const Text(
+                "Issuer Simulator",
+                style: TextStyle(color: Colors.purple), // Texte en couleur violette
+              ),
+              IconButton(
+                icon: const Icon(Icons.qr_code_scanner, color: Colors.purple), // Icône en couleur violette
+                onPressed: () => _showIssuerScanner(context),
+                tooltip: 'Simulate Issuer',
+              ),
+            ],
+          ),
+        ],
           bottom: const TabBar(
             tabs: [
               Tab(text: 'All'),
@@ -268,13 +295,26 @@ class TTPScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             _buildTTPList(context),
-            const NearbyTTPView(), // Remplacé ici
+            const NearbyTTPView(),
             const Center(child: Text('Favorites Coming Soon')),
           ],
         ),
       ),
     );
   }
+
+  void _showIssuerScanner(BuildContext context) {
+    // Remplacer l'ancienne implémentation par celle-ci
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => IssuerVerificationScreen(
+          apiService: apiService,
+        ),
+      ),
+    );
+  }
+
 
   Widget _buildTTPList(BuildContext context) {
     return ListView.builder(
@@ -497,4 +537,8 @@ class TTPScreen extends StatelessWidget {
       ],
     );
   }
+
+
 }
+
+

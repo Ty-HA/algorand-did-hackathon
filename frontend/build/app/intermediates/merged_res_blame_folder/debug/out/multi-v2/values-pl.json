@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.algorand_hackathon.app-mergeDebugResources-31:/values-pl/values-pl.xml",
+            "outputFile": "com.example.algorand_hackathon.app-mergeDebugResources-34:/values-pl/values-pl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\bicht\\.gradle\\caches\\transforms-3\\fdbb3cf6ca045f2cd53bc368c4b64c16\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-pl\\values.xml",

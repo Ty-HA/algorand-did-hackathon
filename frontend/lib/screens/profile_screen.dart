@@ -59,6 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _buildProfileHeader() {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor.withOpacity(0.1),

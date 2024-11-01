@@ -6,6 +6,9 @@ import logging
 import json
 import hashlib
 import uuid
+import base64
+import datetime
+from algosdk.v2client import indexer
 from algosdk import account, mnemonic  # Ajoutez ces imports
 from did_management import register_did, resolve_did, get_algod_client
 from data_display import display_user_data
@@ -140,14 +143,100 @@ async def health_check() -> Dict[str, str]:
     return {"status": "healthy", "version": "1.0.0"}
 
 @app.get("/verify-did/{transaction_id}")
-async def verify_did(transaction_id: str) -> Dict[str, Any]:
-    try:
-        client = get_algod_client()
+
+# async def verify_did(transaction_id: str) -> Dict[str, Any]:
+    # try:
+        # client = get_algod_client()
         # Implement your verification logic here
+        # return {
+             # "status": "success",
+            # "transaction_id": transaction_id,
+            # "verified": True
+        # }
+    # except Exception as e:
+        # raise HTTPException(status_code=404, detail=str(e))
+
+
+async def verify_did(did: str, transaction_id: str) -> bool:
+    try:
+        # 1. Vérifier que la transaction existe
+        indexer = get_indexer_client()
+        txn_info = indexer.transaction(transaction_id)
+        
+        # 2. Vérifier le format de la note avant le décodage
+        if "note" not in txn_info or not txn_info["note"]:
+            logger.error("No note found in transaction")
+            return False
+            
+        # 3. Vérifier que le DID est dans la transaction
+        try:
+            note = base64.b64decode(txn_info["note"]).decode()
+            did_data = json.loads(note)
+        except Exception as e:
+            logger.error(f"Error decoding note: {e}")
+            return False
+        
+        # 4. Vérifier que la transaction est une transaction DID_REGISTRATION
+        if "type" not in did_data or did_data["type"] != "DID_REGISTRATION":
+            logger.error("Not a DID_REGISTRATION transaction")
+            return False
+            
+        # 5. Vérifier que le DID dans la transaction correspond
+        if "did" not in did_data or did_data["did"] != did:
+            logger.error("DID mismatch")
+            return False
+            
+        logger.info(f"DID {did} verified successfully")
+        return True
+    except Exception as e:
+        logger.error(f"Error verifying DID: {e}")
+        return False
+
+class VerifyDIDRequest(BaseModel):
+    did: str
+    transaction_id: str
+    did_document: Dict[str, Any]
+
+@app.post("/verify-did")
+async def verify_did_endpoint(request: VerifyDIDRequest) -> Dict[str, Any]:
+    try:
+        # Vérifier la transaction sur la blockchain
+        is_valid = await verify_did(request.did, request.transaction_id)
+        
+        if not is_valid:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid DID or transaction"
+            )
+            
+        # Vérifier que le DID document correspond
+        try:
+            stored_did = await resolve_did(request.did)
+            if stored_did["didDocument"] != request.did_document:
+                raise HTTPException(
+                    status_code=400,
+                    detail="DID document mismatch"
+                )
+        except Exception as e:
+            logger.error(f"Error verifying DID document: {e}")
+            raise HTTPException(
+                status_code=400,
+                detail="Error verifying DID document"
+            )
+            
         return {
             "status": "success",
-            "transaction_id": transaction_id,
-            "verified": True
+            "verified": True,
+            "did": request.did,
+            "transaction_id": request.transaction_id,
+            "verification_timestamp": datetime.utcnow().isoformat()
         }
+        
+    except HTTPException as he:
+        raise he
     except Exception as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        logger.error(f"Verification failed: {e}")
+        raise HTTPException(
+            status_code=400,
+            detail=f"Verification failed: {str(e)}"
+        )

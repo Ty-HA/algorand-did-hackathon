@@ -23,20 +23,6 @@ The deployment process involves:
 3. Deploying the DID management contract
 
 ```bash
-<<<<<<< HEAD
-python registration.py
-```
-
-## You can check the logs file to get your Algo wallet address and Passphrase
-\backend\logs
-
-## Get Faucets before create Onchain DID with the wallet and Mnemonic
-https://bank.testnet.algorand.network/
-
-### 4.3 Test On-chain Verification
-```python
-python verification_existing_account.py
-=======
 # Deploy the contract
 python scripts/deploy_contract.py
 ```
@@ -55,7 +41,6 @@ After deployment:
 ```python
 # config.py
 APP_ID = YOUR_APP_ID  # Replace with the deployed app ID
->>>>>>> buildonchainyue
 ```
 
 ## 2. Create Algorand Account
@@ -83,7 +68,12 @@ Using curl:
 curl -X POST http://localhost:8000/register \
   -H "Content-Type: application/json" \
   -d '{
-    "address": "YOUR_ACCOUNT_ADDRESS"
+    "address": "EYQHOSSMVRSXVCNPGLYAYQWOZ323IZEFSLXAHFMN5OKWBPDXDQTMRUXU4U",
+    "user_info": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "age": 30
+    }
   }'
 ```
 
@@ -100,120 +90,6 @@ response = requests.post(
 print(response.json())
 ```
 
-<<<<<<< HEAD
-### 7.2 Flutter Integration
-
-To interact with these APIs from your Flutter application, you can use the `http` package. Here's how to implement each API call:
-
-1. First, add the `http` package to your `pubspec.yaml`:
-
-   ```yaml
-   dependencies:
-     http: ^0.13.3
-   ```
-
-2. Import the package in your Dart file:
-
-   ```dart
-   import 'package:http/http.dart' as http;
-   import 'dart:convert';
-   ```
-
-3. Implement the API calls:
-
-   ```dart
-   class ApiService {
-     final String baseUrl = 'http://localhost:8000';  // Replace with your actual API URL
-
-     Future<Map<String, dynamic>> registerUser() async {
-       final response = await http.post(Uri.parse('$baseUrl/register'));
-       if (response.statusCode == 200) {
-         return json.decode(response.body);
-       } else {
-         throw Exception('Failed to register user');
-       }
-     }
-
-     Future<bool> authenticateUser(String did, String address) async {
-       final response = await http.post(
-         Uri.parse('$baseUrl/authenticate'),
-         headers: {'Content-Type': 'application/json'},
-         body: json.encode({'did': did, 'address': address}),
-       );
-       if (response.statusCode == 200) {
-         return true;
-       } else if (response.statusCode == 401) {
-         return false;
-       } else {
-         throw Exception('Failed to authenticate user');
-       }
-     }
-
-     Future<Map<String, dynamic>> displayUserData(String did) async {
-       final response = await http.get(Uri.parse('$baseUrl/display/$did'));
-       if (response.statusCode == 200) {
-         return json.decode(response.body);
-       } else {
-         throw Exception('Failed to fetch user data');
-       }
-     }
-
-     Future<void> updateDid(String did, {String? newKey, String? newService}) async {
-       final response = await http.post(
-         Uri.parse('$baseUrl/update'),
-         headers: {'Content-Type': 'application/json'},
-         body: json.encode({
-           'did': did,
-           if (newKey != null) 'new_key': newKey,
-           if (newService != null) 'new_service': newService,
-         }),
-       );
-       if (response.statusCode != 200) {
-         throw Exception('Failed to update DID');
-       }
-     }
-   }
-   ```
-
-4. Using the API in your Flutter app:
-
-   ```dart
-   final apiService = ApiService();
-
-   // Register a new user
-   try {
-     final userData = await apiService.registerUser();
-     print('New user registered: ${userData['address']}');
-   } catch (e) {
-     print('Error registering user: $e');
-   }
-
-   // Authenticate a user
-   try {
-     final isAuthenticated = await apiService.authenticateUser('did:algo:123', 'user_address');
-     print('User authenticated: $isAuthenticated');
-   } catch (e) {
-     print('Error authenticating user: $e');
-   }
-
-   // Display user data
-   try {
-     final userData = await apiService.displayUserData('did:algo:123');
-     print('User data: $userData');
-   } catch (e) {
-     print('Error fetching user data: $e');
-   }
-
-   // Update DID
-   try {
-     await apiService.updateDid('did:algo:123', newKey: 'new_key_value');
-     print('DID updated successfully');
-   } catch (e) {
-     print('Error updating DID: $e');
-   }
-   ```
-
-=======
 ## Directory Structure
 
 ```
@@ -231,7 +107,6 @@ backend/
 │   └── generate_account.py
 └── config.py
 ```
->>>>>>> buildonchainyue
 
 ## Security Notes
 
@@ -294,4 +169,3 @@ curl -X POST http://localhost:8000/register \
 ```bash
 curl http://localhost:8000/resolve/did:algo:YOUR_GENERATED_ADDRESS
 ```
-
