@@ -1,167 +1,157 @@
-# Algorand DID Backend
+# Algorand DID Management System
 
-A decentralized identity (DID) management system built on Algorand TestNet.
+A decentralized identity management system built on the Algorand blockchain.
 
-## Setup
+## Features
 
-1. Install dependencies:
+- DID Creation and Registration
+- DID Resolution
+- DID Document Management
+- Verifiable Credentials Issuance and Verification
+- Box Storage for DID Documents and Credentials
+
+## Prerequisites
+
+- Python 3.8+
+- Algorand TestNet account
+- Node.js and npm (for frontend)
+
+## Installation
+
+1. Clone the repository:
 ```bash
+git clone https://github.com/yourusername/algorand-did-hackathon.git
+cd algorand-did-hackathon
+```
+
+2. Create and activate a virtual environment:
+```bash
+python -m venv myenv
+source myenv/bin/activate  # On Windows: myenv\Scripts\activate
+```
+
+3. Install dependencies:
+```bash
+cd backend
 pip install -r requirements.txt
 ```
 
-2. Create necessary directories:
+## Smart Contract Deployment
+
+1. Deploy the smart contract:
 ```bash
-mkdir -p logs/accounts
-mkdir -p logs/deployments
-```
-
-## 1. Deploy Contract
-
-The deployment process involves:
-1. Creating a deployer account
-2. Funding it from TestNet faucet
-3. Deploying the DID management contract
-
-```bash
-# Deploy the contract
 python scripts/deploy_contract.py
 ```
 
-This will:
-- Create a new Algorand account
-- Show you the address to fund
-- Wait for you to fund it at https://bank.testnet.algorand.network/
-- Deploy the contract
-- Save deployment info to logs/deployments/deployment_info.json
-- Show you the APP_ID to update in config.py
+2. Update the APP_ID in src/core/config.py with the deployed contract ID.
 
-After deployment:
-1. Copy the APP_ID from the output
-2. Update config.py with your APP_ID:
-```python
-# config.py
-APP_ID = YOUR_APP_ID  # Replace with the deployed app ID
-```
+## Running the Backend
 
-## 2. Create Algorand Account
-
-You can create new accounts using the account generator:
-
+Start the FastAPI server:
 ```bash
-python scripts/generate_account.py
+uvicorn src.api.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-This interactive script allows you to:
-1. Create new accounts
-2. List existing accounts
-3. Get account details
-4. Save account info to logs/accounts/accounts_record.json
+## Usage
 
-The generated accounts can be used for DID registration.
+### DID Registration
 
-## 3. Register DID
-
-Once you have an account, you can register a DID. The registration fees are paid by the deployer account.
-
-Using curl:
+Register a new DID:
 ```bash
 curl -X POST http://localhost:8000/register \
   -H "Content-Type: application/json" \
   -d '{
-    "address": "YOUR_ACCOUNT_ADDRESS"
+    "address": "YOUR_ALGORAND_ADDRESS",
+    "user_info": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "age": 30,
+      "created_at": "2024-11-01"
+    }
   }'
 ```
 
-Using Python:
-```python
-import requests
+### DID Resolution
 
-response = requests.post(
-    "http://localhost:8000/register",
-    json={
-        "address": "YOUR_ACCOUNT_ADDRESS"
-    }
-)
-print(response.json())
+Resolve a DID:
+```bash
+curl http://localhost:8000/resolve/did:algo:YOUR_DID_SUFFIX
 ```
 
-## Directory Structure
+### Credential Management
+
+1. Issue a Verifiable Credential:
+```bash
+curl -X POST http://localhost:8000/issue_credential \
+  -H "Content-Type: application/json" \
+  -d '{
+    "category": "Education",
+    "subject": "Bachelor of Computer Science",
+    "issuer_name": "University of Technology",
+    "issuer_did": "did:algo:ISSUER_ADDRESS",
+    "period": {
+      "start": "2024-01-01",
+      "end": "2024-12-31"
+    },
+    "destinator_did": "did:algo:RECIPIENT_ADDRESS",
+    "metadata": {
+      "grade": "A",
+      "credits": 120,
+      "institution": "University of Technology",
+      "program": "Computer Science",
+      "specialization": "Software Engineering"
+    }
+  }'
+```
+
+2. Verify a Credential:
+```bash
+curl http://localhost:8000/verify_credential/{credential_hash}
+```
+
+## Project Structure
 
 ```
 backend/
-├── logs/
-│   ├── accounts/
-│   │   └── accounts_record.json
-│   └── deployments/
-│       └── deployment_info.json
-├── contracts/
-│   ├── approval.teal
-│   └── clear.teal
-├── scripts/
-│   ├── deploy_contract.py
-│   └── generate_account.py
-└── config.py
+├── src/
+│   ├── core/            # Core configuration and utilities
+│   ├── did/             # DID management functionality
+│   ├── credentials/     # Credential management
+│   ├── auth/           # Authentication
+│   └── api/            # FastAPI application and routes
+├── contracts/          # Smart contracts
+├── scripts/           # Deployment scripts
+└── logs/             # Deployment and account logs
 ```
 
-## Security Notes
+## Features in Detail
 
-Sensitive files are stored in the logs directory and are not committed to git:
-- deployment_info.json: Contains deployer account credentials
-- accounts_record.json: Contains generated account information
+### DID Management
+- Create and register DIDs on Algorand TestNet
+- Resolve DIDs to retrieve DID Documents
+- Update DID Documents
+- Box storage for DID Documents
 
-Never share or commit:
-- Private keys
-- Mnemonics
-- Account credentials
-- deployment_info.json
-- accounts_record.json
+### Credential Management
+- Issue Verifiable Credentials
+- Store credentials using box storage
+- Verify credential authenticity
+- Support for various credential types
+- Metadata and custom attributes
 
-## API Endpoints
+### Storage
+- On-chain storage using Algorand boxes
+- Efficient storage management
+- Secure and verifiable data storage
 
-- POST /register - Register a new DID
-- GET /resolve/{did} - Resolve a DID
-- PUT /update - Update a DID
-- GET /health - Health check
+## Contributing
 
-## Development
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
 
-Start the server:
-```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
+## License
 
-Run tests:
-```bash
-pytest -v
-```
-
-## Example Flow
-
-1. Deploy contract:
-```bash
-python scripts/deploy_contract.py
-# Fund the displayed address at https://bank.testnet.algorand.network/
-# Note the APP_ID and update config.py
-```
-
-2. Create an account:
-```bash
-python scripts/generate_account.py
-# Choose option 1 to create new account
-# Note the generated address
-```
-
-3. Register DID:
-```bash
-curl -X POST http://localhost:8000/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "address": "YOUR_GENERATED_ADDRESS"
-  }'
-```
-
-4. Verify DID:
-```bash
-curl http://localhost:8000/resolve/did:algo:YOUR_GENERATED_ADDRESS
-```
-
+This project is licensed under the MIT License - see the LICENSE file for details.

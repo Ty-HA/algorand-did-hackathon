@@ -1,95 +1,70 @@
-#pragma version 8
+#pragma version 6
 
-// Check transaction type
-txn TypeEnum
-int appl
+// Handle creation
+txn ApplicationID
+int 0
 ==
-bnz handle_application
+bnz handle_create
 
-// Handle other transaction types
-err
+// Handle other calls
+txn NumAppArgs
+int 0
+>
+bz invalid_tx
 
-handle_application:
-    // Check if this is a creation transaction
-    txn ApplicationID
-    int 0
-    ==
-    bnz handle_create
+// Switch on the transaction type
+txna ApplicationArgs 0
+dup
+byte "register"
+==
+bnz handle_register
 
-    // Handle other application calls
-    txn OnCompletion
-    int NoOp
-    ==
-    bnz handle_noop
+dup
+byte "issue_credential"
+==
+bnz handle_issue_credential
 
-    // Reject all other calls
-    err
+err // Unrecognized action
 
+// Handle app creation
 handle_create:
-    // Allow anyone to create the application
-    // Store deployer address for future reference
-    byte "deployer"
-    txn Sender
+    // Initialize state
+    byte "currentIndex"
+    int 0
     app_global_put
     int 1
     return
 
-handle_noop:
-    // Get first application argument
-    txn NumAppArgs
-    int 0
-    >
-    bz reject  // If no arguments, reject
-
-    // Check operation type
-    txn ApplicationArgs 0
-    dup
-    byte "register"
-    ==
-    bnz handle_register
-
-    dup
-    byte "store"
-    ==
-    bnz handle_store
-
-    // Default: reject if no matching operation
-    b reject
-
+// Handle DID registration
 handle_register:
-    // Allow registration from deployer
-    byte "deployer"
-    app_global_get
+    // Verify sender is creator
     txn Sender
+    global CreatorAddress
     ==
-    bz reject  // If not deployer, reject
-
-    // Allow registration
-    int 1
-    return
-
-handle_store:
-    // Allow storage from deployer
-    byte "deployer"
-    app_global_get
-    txn Sender
-    ==
-    bz reject  // If not deployer, reject
-
-    // Check if we have box name and value
-    txn NumAppArgs
-    int 3
-    ==
-    bz reject
-
-    // Store in box
-    txn ApplicationArgs 1  // box name
-    txn ApplicationArgs 2  // box value
-    box_put
+    assert
     
+    // Get the DID subject's address from accounts array
+    txn NumAccounts
+    int 1
+    ==
+    assert
+    
+    // Success
     int 1
     return
 
-reject:
+// Handle credential issuance
+handle_issue_credential:
+    // Verify sender is creator
+    txn Sender
+    global CreatorAddress
+    ==
+    assert
+    
+    // Success
+    int 1
+    return
+
+invalid_tx:
     int 0
     return

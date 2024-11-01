@@ -15,7 +15,6 @@ __pycache__/
 *$py.class
 *.so
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -31,7 +30,11 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# Virtual Environment
 venv/
+myenv/
+ENV/
 
 # IDE
 .idea/
@@ -39,6 +42,26 @@ venv/
 *.swp
 *.swo
 
-# Logs and databases
+# Logs
+logs/
 *.log
-*.sqlite
+
+# Local development
+.env
+.env.local
+.env.*.local
+
+# Algorand specific
+node_modules/
+.DS_Store
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Large files
+*.db
+*.sqlite3
+*.tar.gz
+*.zip
+*.rar
