@@ -65,7 +65,7 @@ def test_did():
     return "did:algo:test123"
 
 @pytest.fixture
-def mock_did_document():
+def mock_did_document(test_keys) -> Dict[str, Any]:
     return {
         "@context": [
             "https://www.w3.org/ns/did/v1",
@@ -76,11 +76,10 @@ def mock_did_document():
             "id": "did:algo:test123#key-1",
             "type": "Ed25519VerificationKey2018",
             "controller": "did:algo:test123",
-            "publicKeyBase58": "TEST123456789"
+            "publicKeyBase58": test_keys["address"]
         }],
         "authentication": ["did:algo:test123#key-1"],
         "assertionMethod": ["did:algo:test123#key-1"],
-        "created": 1635724800
+        "created": 1635724800,
+        "updated": 1635724800
     }
-
-
