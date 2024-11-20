@@ -1,4 +1,4 @@
-#Fri Nov 01 23:00:56 CET 2024
+#Wed Nov 20 17:35:13 CET 2024
 base.0=D\:\\PROJECTS\\flutter_projects\\algorand_hackathon\\frontend\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=D\:\\PROJECTS\\flutter_projects\\algorand_hackathon\\frontend\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=D\:\\PROJECTS\\flutter_projects\\algorand_hackathon\\frontend\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex

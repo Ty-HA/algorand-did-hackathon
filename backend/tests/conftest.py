@@ -10,7 +10,7 @@ from algosdk import account
 backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, backend_dir)
 
-from main import app  # Import after adding backend_dir to sys.path
+from src.api.main import app  # Import after adding backend_dir to sys.path
 
 @pytest.fixture
 def test_keys():
