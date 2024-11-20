@@ -6,6 +6,7 @@ import base64
 import json
 from ..core.config import ALGOD_ADDRESS, ALGOD_TOKEN, INDEXER_ADDRESS, INDEXER_TOKEN, APP_ID, DID_PREFIX
 from ..core.utils import logger
+import asyncio
 
 def get_algod_client() -> algod.AlgodClient:
     return algod.AlgodClient(ALGOD_TOKEN, ALGOD_ADDRESS)
